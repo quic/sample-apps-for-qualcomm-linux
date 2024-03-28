@@ -4,6 +4,20 @@
 
 Sample applications for Qualcomm® Linux repository provide sample applications to demonstrate the capability of Qualcomm Linux platforms.
 
+## Build Sample Applications
+### Generate the eSDK containing the cross-compiler tool chain
+
+Note: qcom-wayland-x86_64-<image>-armv8-2a-qcm6490-toolchain-1.0.sh is required to build sample applications.
+
+Follow these [build procedures](https://github.com/quic-yocto/meta-qcom-qim-product-sdk) to build the Qualcomm Intelligent Multimedia Product SDK (QIMP SDK).
+
+Run the following command from the build directory to generate the eSDK:
+
+bitbake -c do_populate_sdk qcom-multimedia-image
+qcom-wayland-x86_64-<image>-armv8-2a-qcm6490-toolchain-1.0.sh is generated at <WORKSPACE DIR>/build-qcom-wayland/tmp-glibc/deploy/sdk.
+
+Extract the toolchain using ./qcom-wayland-x86_64-<image>-armv8-2a-qcm6490-toolchain-1.0.sh.
+
 ## Model Details
 
 Contains Qualcomm® Neural Processing SDK quantized models and TensorFlow Lite (TFLite) to execute the Sample applications : 
