@@ -5,7 +5,7 @@
 Sample applications for Qualcomm® Linux repository provide sample applications to demonstrate the capability of Qualcomm Linux platforms.
 
 ## Build Sample Applications
-### Generate the eSDK containing the cross-compiler tool chain
+## Generate the eSDK containing the cross-compiler tool chain
 
 Note: qcom-wayland-x86_64-qcom-multimedia-image-armv8-2a-qcm6490-toolchain-1.0.sh is required to build sample applications.
 
