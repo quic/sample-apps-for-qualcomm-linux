@@ -41,13 +41,16 @@ cd <installation directory of platfom SDK>
 3. git clone https://github.com/quic/sample-apps-for-qualcomm-linux
 4. cd sample-apps-for-qualcomm-linux/Hello-QIM 
 5. export SDKTARGETSYSROOT=<path to installation directory of platfom SDK>/tmp/sysroots
-   Example : export SDKTARGETSYSROOT=/local/mnt/workspace/Platform_eSDK_plus_QIM/tmp/sysroots
+
+   e.g.: export SDKTARGETSYSROOT=/local/mnt/workspace/Platform_eSDK_plus_QIM/tmp/sysroots
 
    export MACHINE=<machine>
-   Example: export MACHINE=qcs6490-rb3gen2-vision-kit
+   
+   e.g.: export MACHINE=qcs6490-rb3gen2-vision-kit
 
    export GST_APP_NAME=<appname> 
-   Example: export GST_APP_NAME=gst-appsink
+
+   e.g.: export GST_APP_NAME=gst-appsink
 7. make 
 
 To run the Hello-QIM program, do the following
