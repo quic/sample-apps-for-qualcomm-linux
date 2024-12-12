@@ -8,12 +8,13 @@ show_help() {
     echo "Usage: $0 -v <version> -c <chipset>"
     echo
     echo "Options:"
-    echo "  -v, --version    Select the release version to download (e.g., GA1.2-rel)"
+    echo "  -v, --version    Select the release version to download (e.g., GA1.3-rel)"
     echo "  -c, --chipset    Select the chipset directory to copy files from (e.g., QCS6490, QCS9075)"
     echo "  -h, --help       Help menu"
     echo
     echo "Example:"
-    echo "  ./download_artifacts.sh -v GA1.2-rel -c QCS6490"}
+    echo "  ./download_artifacts.sh -v GA1.3-rel -c QCS6490"
+}
 
 # Function to check internet connectivity
 check_internet() {
@@ -27,12 +28,19 @@ check_internet() {
 }
 
 # Function to download and unzip files
-download_and_unzip() {
+download_models() {
     local url=$1
     local output_dir=$2
     local chipset=$3
     curl -L -O "$url" && unzip -o "$(basename "$url")" && \
-    cp "$(basename "$url" .zip)/$chipset"/* "$output_dir"
+    cp "$(basename "$url" .zip)"/* "$output_dir"
+}
+
+download_labels() {
+    local url=$1
+    local output_dir=$2
+    curl -L -O "$url" && unzip -o "$(basename "$url")" && \
+    cp labels/* "$output_dir"
 }
 
 # Function to download files
@@ -68,15 +76,19 @@ main() {
     check_internet
 
     # Download and unzip the specified version
-    download_and_unzip "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/${version}.zip" "/opt" "$chipset"
+    download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/v2.29_${chipset}.zip" "/opt" "$chipset"
+    download_labels https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/labels.zip "/opt"
 
     # Download model and label files
     download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/blob/main/Inception-v3-Quantized.tflite" "/opt/Inception-v3-Quantized.tflite"
     download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/blob/main/DeepLabV3-Plus-MobileNet-Quantized.tflite" "/opt/DeepLabV3-Plus-MobileNet-Quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Midas-V2-Quantized/blob/main/Midas-V2-Quantized.tflite" "/opt/Midas-V2-Quantized.tflite"
     download_file "https://huggingface.co/qualcomm/HRNetPoseQuantized/blob/main/HRNetPoseQuantized.tflite" "/opt/HRNetPoseQuantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Yolo-NAS-Quantized/resolve/main/Yolo-NAS-Quantized.tflite?download=true" "/opt/Yolo-NAS-Quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/YOLOv8-Detection-Quantized/resolve/main/YOLOv8-Detection-Quantized.tflite?download=true" "/opt/YOLOv8-Detection-Quantized.tflite"
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "/opt/midasv2.dlc"
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "/opt/monodepth.labels"
+    
 
     echo "Model and Label files download Successful to /opt directory"
     exit 0
