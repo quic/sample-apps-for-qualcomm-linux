@@ -18,7 +18,7 @@ show_help() {
 
 # Function to check internet connectivity
 check_internet() {
-    if ping -c 1 www.qualcomm.com &> /dev/null; then
+    if ping -c 1 qualcomm.com &> /dev/null; then
         echo "Internet is connected"
     else
         echo "No internet connection"
@@ -46,8 +46,9 @@ download_labels() {
 # Function to download files
 download_file() {
     local url=$1
-    local output_path=$2
-    curl -o "$output_path" "$url"
+    local output_dir=$2
+    curl -L -O "$url"
+    cp "$(basename "$url")" "$output_dir"
 }
 
 # Main script execution
@@ -77,18 +78,17 @@ main() {
 
     # Download and unzip the specified version
     download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/v2.29_${chipset}.zip" "/opt" "$chipset"
-    download_labels https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/labels.zip "/opt"
+    download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/labels.zip" "/opt"
 
     # Download model and label files
-    download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/blob/main/Inception-v3-Quantized.tflite" "/opt/Inception-v3-Quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/blob/main/DeepLabV3-Plus-MobileNet-Quantized.tflite" "/opt/DeepLabV3-Plus-MobileNet-Quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Midas-V2-Quantized/blob/main/Midas-V2-Quantized.tflite" "/opt/Midas-V2-Quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/HRNetPoseQuantized/blob/main/HRNetPoseQuantized.tflite" "/opt/HRNetPoseQuantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Yolo-NAS-Quantized/resolve/main/Yolo-NAS-Quantized.tflite?download=true" "/opt/Yolo-NAS-Quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/YOLOv8-Detection-Quantized/resolve/main/YOLOv8-Detection-Quantized.tflite?download=true" "/opt/YOLOv8-Detection-Quantized.tflite"
-    download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "/opt/midasv2.dlc"
-    download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "/opt/monodepth.labels"
-    
+    download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite" "/opt/"
+    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite" "/opt/"
+    download_file "https://huggingface.co/qualcomm/Midas-V2-Quantized/resolve/main/Midas-V2-Quantized.tflite" "/opt/"
+    download_file "https://huggingface.co/qualcomm/HRNetPoseQuantized/resolve/main/HRNetPoseQuantized.tflite" "/opt/"
+    download_file "https://huggingface.co/qualcomm/Yolo-NAS-Quantized/resolve/main/Yolo-NAS-Quantized.tflite" "/opt/"
+    download_file "https://huggingface.co/qualcomm/YOLOv8-Detection-Quantized/resolve/main/YOLOv8-Detection-Quantized.tflite" "/opt/"
+    download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "/opt/"
+    download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "/opt/"
 
     echo "Model and Label files download Successful to /opt directory"
     exit 0
