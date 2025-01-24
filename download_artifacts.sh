@@ -94,8 +94,6 @@ main() {
     download_file "https://huggingface.co/qualcomm/Midas-V2-Quantized/resolve/main/Midas-V2-Quantized.tflite" "/opt/"
     download_file "https://huggingface.co/qualcomm/HRNetPoseQuantized/resolve/main/HRNetPoseQuantized.tflite" "/opt/hrnet_pose_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Yolo-NAS-Quantized/resolve/main/Yolo-NAS-Quantized.tflite" "/opt/"
-    download_file "https://huggingface.co/qualcomm/YOLOv8-Detection-Quantized/resolve/main/YOLOv8-Detection-Quantized.tflite" "/opt/"
-    download_file "https://huggingface.co/qualcomm/YOLOv8-Detection-Quantized/resolve/main/YOLOv8-Detection-Quantized.tflite" "/opt/yolov8_det_quantized.tflite"
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "/opt/"
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "/opt/"
     download_file "https://huggingface.co/qualcomm/QuickSRNetSmall-Quantized/resolve/main/QuickSRNetSmall-Quantized.tflite" "/opt/quicksrnetsmall_quantized.tflite"
