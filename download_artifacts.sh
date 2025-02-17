@@ -18,7 +18,7 @@ show_help() {
 
 # Function to check internet connectivity
 check_internet() {
-    if ping -c 1 qualcomm.com &> /dev/null; then
+    if ping -c 1 www.qualcomm.com &> /dev/null; then
         echo "Internet is connected"
     else
         echo "No internet connection"
