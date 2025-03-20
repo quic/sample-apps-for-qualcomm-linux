@@ -127,6 +127,7 @@ main() {
         outputmodelpath="/etc/models/"
         outputlabelpath="/etc/labels/"
         outputconfigpath="/etc/configs/"
+	outputmediapath="/etc/media/"
     fi
 
     # Check if version and chipset are provided
@@ -139,6 +140,7 @@ main() {
     mkdir -p "${outputmodelpath}"
     mkdir -p "${outputlabelpath}"
     mkdir -p "${outputconfigpath}"
+    mkdir -p "${outputmediapath}"
 
     if [ -w "${outputmodelpath}" ] && [ -w "${outputlabelpath}" ] && [ -w "${outputconfigpath}" ]; then
         if [ "$version" == "GA1.3-rel" ]; then
@@ -165,7 +167,7 @@ main() {
     else
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.31_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath} 
-	fi
+    fi
 
     # Download model and label files
     download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
@@ -175,6 +177,11 @@ main() {
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "${outputmodelpath}/"
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "${outputlabelpath}/"
     download_file "https://huggingface.co/qualcomm/QuickSRNetSmall-Quantized/resolve/main/QuickSRNetSmall-Quantized.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection-Quantized/resolve/main/Lightweight-Face-Detection-Quantized.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite" "${outputmodelpath}/mobilenet_v2_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection-Quantized/resolve/main/Facial-Landmark-Detection-Quantized.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/YamNet/resolve/main/yamnet.tflite" "${outputmodelpath}/"
 
     if [ "$version" == "GA1.3-rel" ]; then
         # Download config files
