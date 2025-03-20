@@ -175,6 +175,11 @@ main() {
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "${outputmodelpath}/"
     download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "${outputlabelpath}/"
     download_file "https://huggingface.co/qualcomm/QuickSRNetSmall-Quantized/resolve/main/QuickSRNetSmall-Quantized.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection-Quantized/resolve/main/Lightweight-Face-Detection-Quantized.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite" "${outputmodelpath}/mobilenet_v2_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection-Quantized/resolve/main/Facial-Landmark-Detection-Quantized.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/YamNet/resolve/main/yamnet.tflite" "${outputmodelpath}/"
 
     if [ "$version" == "GA1.3-rel" ]; then
         # Download config files
