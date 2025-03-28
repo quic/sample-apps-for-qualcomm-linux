@@ -127,7 +127,8 @@ main() {
         outputmodelpath="/etc/models/"
         outputlabelpath="/etc/labels/"
         outputconfigpath="/etc/configs/"
-	outputmediapath="/etc/media/"
+        outputdatapath="/etc/data/"
+        outputmediapath="/etc/media/"
     fi
 
     # Check if version and chipset are provided
@@ -140,6 +141,7 @@ main() {
     mkdir -p "${outputmodelpath}"
     mkdir -p "${outputlabelpath}"
     mkdir -p "${outputconfigpath}"
+    mkdir -p "${outputdatapath}"
     mkdir -p "${outputmediapath}"
 
     if [ -w "${outputmodelpath}" ] && [ -w "${outputlabelpath}" ] && [ -w "${outputconfigpath}" ]; then
@@ -165,9 +167,9 @@ main() {
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/v2.29_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/labels.zip" ${outputlabelpath} 
     else
-      download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.31_${chipset}.zip" ${outputmodelpath}
+      download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.32_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath} 
-    fi
+	fi
 
     # Download model and label files
     download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
@@ -182,6 +184,15 @@ main() {
     download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection-Quantized/resolve/main/Facial-Landmark-Detection-Quantized.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/YamNet/resolve/main/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
+
+    if [ "$version" == "GA1.4-rel" ]; then
+      # Download bin files for face recognition
+      download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/blendShape.bin" "${outputdatapath}/"
+      download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/meanFace.bin" "${outputdatapath}/"
+      download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/shapeBasis.bin" "${outputdatapath}/"
+      download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video.mp4" "${outputmediapath}/"
+      download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video1.mp4" "${outputmediapath}/"
+    fi
 
     if [ "$version" == "GA1.3-rel" ]; then
         # Download config files
