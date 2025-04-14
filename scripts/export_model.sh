@@ -6,12 +6,12 @@
 # Parse command line arguments for API token
 for i in "$@"; do
   case $i in
-    --api-token=*)
+    --api-token=*|--api-key=*)
       API_TOKEN="${i#*=}"
       shift
       ;;
     *)
-      echo "Usage: $0 --api-token=your_api_token_here"
+      echo "Usage: $0 --api-token=your_api_token_here or --api-key=your_api_key_here"
       exit 1
       ;;
   esac
@@ -19,7 +19,7 @@ done
 
 # Check if API token is provided
 if [ -z "$API_TOKEN" ]; then
-  echo "API token is required. Usage: $0 --api-token=your_api_token_here"
+  echo "API token is required. Usage: $0 --api-token=your_api_token_here or --api-key=your_api_key_here"
   exit 1
 fi
 
@@ -29,7 +29,7 @@ MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_6
 # Define the installation directory
 INSTALL_DIR="$PWD/miniconda3"
 
-# Define the home directory for aihub assests
+# Define the home directory for aihub assets
 export HOME=$PWD
 
 # Download the Miniconda installer
@@ -64,8 +64,8 @@ source $INSTALL_DIR/bin/activate py310
 
 # Install the qai_hub package
 echo "Installing qai_hub package..."
-pip install qai-hub==0.24.0
-pip install "qai-hub-models[yolov8-det-quantized]"
+pip install qai-hub
+pip install "qai-hub-models[yolov8-det]"
 
 # Configure qai_hub with API token
 echo "Configuring qai_hub..."
@@ -73,10 +73,10 @@ qai-hub configure --api_token "$API_TOKEN"
 
 # Export models
 echo "Exporting YOLOv8 quantized model..."
-python -m qai_hub_models.models.yolov8_det_quantized.export --skip-profiling --skip-inferencing
+#python -m qai_hub_models.models.yolov8_det.export --quantize w8a8 --skip-profiling --skip-inferencing
 
 echo "Exporting YOLO-NAS quantized model..."
-pip install "qai-hub-models[yolonas-quantized]"
-python -m qai_hub_models.models.yolonas_quantized.export --skip-profiling --skip-inferencing
+pip install "qai-hub-models[yolonas]"
+python -m qai_hub_models.models.yolonas.export --quantize w8a8 --skip-profiling --skip-inferencing
 
 echo "Miniconda installation, activation, Python 3.10 environment creation, and qai_hub package installation complete."
