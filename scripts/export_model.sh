@@ -73,7 +73,7 @@ qai-hub configure --api_token "$API_TOKEN"
 
 # Export models
 echo "Exporting YOLOv8 quantized model..."
-#python -m qai_hub_models.models.yolov8_det.export --quantize w8a8 --skip-profiling --skip-inferencing
+python -m qai_hub_models.models.yolov8_det.export --quantize w8a8 --skip-profiling --skip-inferencing
 
 echo "Exporting YOLO-NAS quantized model..."
 pip install "qai-hub-models[yolonas]"
