@@ -10,13 +10,13 @@ show_help() {
     echo "Usage: $0 -v <version> -c <chipset>"
     echo
     echo "Options:"
-    echo "  -v, --version    Select the release version to download (e.g., GA1.3-rel)"
+    echo "  -v, --version    Select the release version to download (e.g., GA1.5-rel)"
     echo "  -c, --chipset    Select the chipset directory to copy files from (e.g., QCS6490, QCS9075)"
     echo "  -o, --outpath    Select the output directory to copy files to (e.g., /tmp). This is an optional parameter. Defaults to /opt if not provided."
     echo "  -h, --help       Help menu"
     echo
     echo "Example:"
-    echo "  ./download_artifacts.sh -v GA1.4-rel -c QCS6490"
+    echo "  ./download_artifacts.sh -v GA1.5-rel -c QCS6490"
 }
 
 # Function to check internet connectivity
@@ -169,7 +169,7 @@ main() {
     else
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.32_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath} 
-	fi
+    fi
 
     # Download model and label files
     download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
@@ -185,8 +185,7 @@ main() {
     download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/YamNet/resolve/main/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
 
-    if [ "$version" == "GA1.4-rel" ]; then
-      # Download bin files for face recognition
+    if [ "$version" == "GA1.4-rel" ] || [ "$version" == "1.5" ]; then
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/blendShape.bin" "${outputdatapath}/"
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/meanFace.bin" "${outputdatapath}/"
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/shapeBasis.bin" "${outputdatapath}/"
