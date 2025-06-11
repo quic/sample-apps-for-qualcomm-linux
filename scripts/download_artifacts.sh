@@ -184,6 +184,8 @@ main() {
     download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection-Quantized/resolve/main/Facial-Landmark-Detection-Quantized.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/YamNet/resolve/main/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
+    download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
+    download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolox.labels"
 
     if [ "$version" == "GA1.4-rel" ]; then
       # Download bin files for face recognition
