@@ -10,7 +10,7 @@ show_help() {
     echo "Usage: $0 -v <version> -c <chipset>"
     echo
     echo "Options:"
-    echo "  -v, --version    Select the release version to download (e.g., GA1.5-rel)"
+    echo "  -v, --version    Select the release version to download (Available version: GA1.3-rel, GA1.4-rel, GA1.5-rel)"
     echo "  -c, --chipset    Select the chipset directory to copy files from (e.g., QCS6490, QCS9075)"
     echo "  -o, --outpath    Select the output directory to copy files to (e.g., /tmp). This is an optional parameter. Defaults to /opt if not provided."
     echo "  -h, --help       Help menu"
@@ -31,7 +31,7 @@ check_internet() {
 }
 
 #Function to check if the Platform ESDK Environment variables are set
-#and therefore the Chipset Name and GA version can be extracted from 
+#and therefore the Chipset Name and GA version can be extracted from
 #that.
 check_env_vars () {
   if [ -z "${OECORE_SDK_VERSION}" ]; then
@@ -52,7 +52,7 @@ check_env_vars () {
     env_chipset="${env_chipset%%-*}"
     env_chipset=$(echo "$env_chipset" | tr '[:lower:]' '[:upper:]')
   fi
-  
+
 }
 
 # Function to download and unzip files
@@ -165,10 +165,13 @@ main() {
     # Download and unzip the specified version
     if [ "$version" == "GA1.3-rel" ]; then
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/v2.29_${chipset}.zip" ${outputmodelpath}
-      download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/labels.zip" ${outputlabelpath} 
-    else
+      download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${version}/labels.zip" ${outputlabelpath}
+    elif [ "$version" == "GA1.4-rel" ]; then
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.32_${chipset}.zip" ${outputmodelpath}
-      download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath} 
+      download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath}
+    else
+      download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.5-rel/v2.35_${chipset}.zip" ${outputmodelpath}
+      download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.5-rel/labels.zip" ${outputlabelpath}
     fi
 
     # Download model and label files
@@ -187,7 +190,8 @@ main() {
     download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolox.labels"
 
-    if [ "$version" == "GA1.4-rel" ] || [ "$version" == "1.5" ]; then
+    if [ "$version" == "GA1.4-rel" ] || [ "$version" == "GA1.5-rel" ]; then
+      # Download bin files for face recognition
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/blendShape.bin" "${outputdatapath}/"
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/meanFace.bin" "${outputdatapath}/"
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/shapeBasis.bin" "${outputdatapath}/"
@@ -209,7 +213,7 @@ main() {
 
     if [ "$version" == "GA1.3-rel" ]; then
       echo "Model,Label and Config files download Successful to ${outputpath} directory"
-	else 
+	else
       echo "Model and Label files download Successful to /etc/models/ and /etc/labels/ directory"
     fi
 
