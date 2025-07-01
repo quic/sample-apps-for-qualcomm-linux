@@ -1,3 +1,0 @@
-(structure)"mean-face,location=(string)/etc/data/meanFace.bin;"
-(structure)"shape-basis,location=(string)/etc/data/shapeBasis.bin;"
-(structure)"blend-shape,location=(string)/etc/data/blendShape.bin;"
