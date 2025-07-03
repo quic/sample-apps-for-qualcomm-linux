@@ -5,8 +5,8 @@
   "Locations": {
 	"AIModelLocation": "/etc/models/",
 	"AILabelLocation": "/etc/labels/",
-  "FileUrl":"https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video.mp4",
-  "Filepath":"/etc/media/",
+  	"FileUrl":"https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video.mp4",
+ 	"Filepath":"/etc/media/",
 	"ConfigFileLocation": "/etc/configs/"
   },
   "SampleApplications": [
