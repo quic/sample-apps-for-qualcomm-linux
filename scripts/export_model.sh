@@ -64,6 +64,7 @@ source $INSTALL_DIR/bin/activate py310
 
 # Install the qai_hub package
 echo "Installing qai_hub package..."
+pip install python-git
 pip install qai-hub
 pip install "qai-hub-models[yolov8-det]"
 
