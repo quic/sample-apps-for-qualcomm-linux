@@ -5,6 +5,8 @@
   "Locations": {
 	"AIModelLocation": "/etc/models/",
 	"AILabelLocation": "/etc/labels/",
+  	"FileUrl":"https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video.mp4",
+ 	"Filepath":"/etc/media/",
 	"ConfigFileLocation": "/etc/configs/"
   },
   "SampleApplications": [
@@ -15,71 +17,71 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "inception_v3_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite",
           "LabelFile": "classification.labels",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
 	  "AIModelsSupportedByApplication": [
         {
           "ModelName": "MobileNet-v2-Quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNet101Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet101Quantized/resolve/main/ResNet101Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNet101_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet101/resolve/b76679b37489e5597fa219d96120df420885292c/ResNet101_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "GoogLeNetQuantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/GoogLeNetQuantized/resolve/main/GoogLeNetQuantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "GoogLeNet_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/GoogLeNet/resolve/7730f17cce9298eb949a92e183ce43732607cfc5/GoogLeNet_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
           "ModelName": "MobileNet-v3-Large-Quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v3-Large-Quantized/resolve/main/MobileNet-v3-Large-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNet18Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet18Quantized/resolve/main/ResNet18Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNet18_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet18/resolve/ce2e9dc7ee59bf621868fd13bd435c7c476799eb/ResNet18_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNeXt50Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt50Quantized/resolve/main/ResNeXt50Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNeXt50_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt50/resolve/4d5e28ba752667aa66e9a57d963ff9810718a85d/ResNeXt50_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNeXt101Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt101Quantized/resolve/main/ResNeXt101Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNeXt101_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt101/resolve/9a579111790c7008dcc553609da2b1590541e6d2/ResNeXt101_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "SqueezeNet-1_1Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1_1Quantized/resolve/main/SqueezeNet-1_1Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "SqueezeNet-1_1_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1_1/resolve/482b6e6aeedd8feed74849cb75783073ae10d2c6/SqueezeNet-1_1_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "WideResNet50-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/WideResNet50-Quantized/resolve/main/WideResNet50-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "WideResNet50_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/WideResNet50/resolve/2e7e31b012d6dde029b2976a03a8ecc2da6be970/WideResNet50_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "Shufflenet-v2Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Shufflenet-v2Quantized/resolve/main/Shufflenet-v2Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "Shufflenet-v2_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Shufflenet-v2/resolve/5ab721591eaf8e6e3ee585610ad75889d16b1288/Shufflenet-v2_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
       "ApplicationTextDescription": "This application is designed to enables you to identify the subject in an image. The use cases use the Qualcomm Neural Processing SDK, LiteRT, or Qualcomm AI Engine direct models."
@@ -101,13 +103,13 @@
           "ModelName": "yolov7_det_quantized.tflite",
           "ModelDownloadURL": "",
           "LabelFile": "detection.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/detection.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         },
         {
           "ModelName": "yolonas_quantized.tflite",
           "ModelDownloadURL": "",
           "LabelFile": "detection.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/detection.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         }
       ],
       "ApplicationTextDescription": "This application is designed to enables you to detect objects within images and videos. The use cases show the execution of YOLOv5, YOLOv8, and YOLO-NAS on Qualcomm AI HW accelerator"
@@ -119,9 +121,9 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "hrnet_pose_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPoseQuantized/resolve/main/HRNetPoseQuantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite",
           "LabelFile": "hrnet_pose.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/hrnet_pose.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/hrnet_pose.labels"
         }
       ],
       "ApplicationTextDescription": "This application allows Pose Detection of human target using Camera, File and RTSP. The use cases supports Qualcomm Neural Processing SDK, LiteRT, or Qualcomm AI Engine direct models."
@@ -135,27 +137,27 @@
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/deeplabv3_resnet50.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         }
       ],
 	  "AIModelsSupportedByApplication": [
 		{
-          "ModelName": "FFNet-40S-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/FFNet-40S-Quantized/resolve/main/FFNet-40S-Quantized.tflite",
+          "ModelName": "FFNet-40S_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/FFNet-40S/resolve/103f52b6c2d0b45464112d95704f4556ec7f480c/FFNet-40S_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/deeplabv3_resnet50.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         },
         {
-          "ModelName": "FFNet-54S-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/FFNet-54S-Quantized/resolve/main/FFNet-54S-Quantized.tflite",
+          "ModelName": "FFNet-54S_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/FFNet-54S/resolve/55386d7b4c76761242d4b0f15d7a788c65d45571/FFNet-54S_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/deeplabv3_resnet50.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         },
         {
-          "ModelName": "FFNet-78S-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/FFNet-78S-Quantized/resolve/main/FFNet-78S-Quantized.tflite",
+          "ModelName": "FFNet-78S_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/FFNet-78S/resolve/471dfa14687abf8004c188687022e2597279b29d/FFNet-78S_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/deeplabv3_resnet50.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         }
       ],
       "ApplicationTextDescription": "This application enables you to divide an image into different and meaningful parts or segments and assign a label to each homogenous segment based on the similarity of the attributes."
@@ -167,9 +169,9 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "midas_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Midas-V2-Quantized/resolve/main/Midas-V2-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Midas-V2/resolve/d182b62632d80d3d1690f6e13fec18dd09c05fdf/Midas-V2_w8a8.tflite",
           "LabelFile": "monodepth.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/monodepth.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/monodepth.labels"
         }
       ],
       "ApplicationTextDescription": "This application is designed to enables you to infer depth of a source feed from a live camera stream, file, or an RTSP stream."
@@ -181,27 +183,27 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "quicksrnetsmall_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetSmall-Quantized/resolve/main/QuickSRNetSmall-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite",
           "LabelFile": "NA",
           "LabelDownloadURL": "NA"
         }
       ],
 	  "AIModelsSupportedByApplication": [
 		{
-          "ModelName": "QuickSRNetMedium-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetMedium-Quantized/resolve/main/QuickSRNetMedium-Quantized.tflite",
+          "ModelName": "QuickSRNetMedium_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetMedium/resolve/530c29ac283d18572fe2ebfd95adaedcd01b0d39/QuickSRNetMedium_w8a8.tflite",
           "LabelFile": "",
           "LabelDownloadURL": ""
         },
         {
-          "ModelName": "QuickSRNetLarge-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetLarge-Quantized/resolve/main/QuickSRNetLarge-Quantized.tflite",
+          "ModelName": "QuickSRNetLarge_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetLarge/resolve/8361177dd18a1b37d3d24b7d8604925db0cd78ac/QuickSRNetLarge_w8a8.tflite",
           "LabelFile": "",
           "LabelDownloadURL": ""
         },
         {
-          "ModelName": "XLSR-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/XLSR-Quantized/resolve/main/XLSR-Quantized.tflite",
+          "ModelName": "XLSR_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/XLSR/resolve/e98863f9e1581f5f3e3114ee39aab7648b019377/XLSR_w8a8.tflite",
           "LabelFile": "",
           "LabelDownloadURL": ""
         }
@@ -217,25 +219,25 @@
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/deeplabv3_resnet50.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         },
         {
           "ModelName": "hrnet_pose_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPoseQuantized/resolve/main/HRNetPoseQuantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite",
           "LabelFile": "hrnet_pose.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/hrnet_pose.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/hrnet_pose.labels"
         },
         {
-          "ModelName": "yolov8_det_quantized.tflite",
-          "ModelDownloadURL": "",
-          "LabelFile": "yolov8.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/detection.labels"
+          "ModelName": "yolox_quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "LabelFile": "yolox.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         },
         {
           "ModelName": "inception_v3_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite",
           "LabelFile": "classification.labels",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
       "ApplicationTextDescription": "This application enables you to perform object detection, object classification, pose detection, and image segmentation on an input stream"
@@ -253,9 +255,9 @@
         },
         {
           "ModelName": "inception_v3_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates object detection/classification on upto 16 input streams coming from camera and/or files and/or rtsp streams"
@@ -291,7 +293,7 @@
           "ModelName": "yolov5.tflite",
           "ModelDownloadURL": "",
           "LabelFile": "yolov5.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/detection.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates object detection over multiple input/output stream combinations. Input streams can come from camera/file/rtsp and output can be display or file or rtsp"
@@ -337,9 +339,9 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "face_det_lite_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Lightweight-Face-Detection-Quantized/resolve/main/Lightweight-Face-Detection-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/e80b4d954ffaaefe2958e70b27bee77e74cc8550/Lightweight-Face-Detection_w8a8.tflite",
           "LabelFile": "face_detection.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/face_detection.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/face_detection.labels"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates face detection on live video input from a camera, file, or an RTSP stream."
@@ -351,21 +353,21 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "face_det_lite_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Lightweight-Face-Detection-Quantized/resolve/main/Lightweight-Face-Detection-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/e80b4d954ffaaefe2958e70b27bee77e74cc8550/Lightweight-Face-Detection_w8a8.tflite",
           "LabelFile": "face_detection.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/face_detection.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/face_detection.labels"
         },
         {
           "ModelName": "face_attrib_net_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite",
           "LabelFile": "face_recognition.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/face_recognition.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/face_recognition.labels"
         },
         {
           "ModelName": "facemap_3dmm_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Facial-Landmark-Detection-Quantized/resolve/main/Facial-Landmark-Detection-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite",
           "LabelFile": "face_landmark.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/face_landmark.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/face_landmark.labels"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates face recognition on the live video input from a camera or an RTSP stream."
@@ -377,9 +379,9 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yamnet.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/YamNet/resolve/main/YamNet.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite",
           "LabelFile": "yamnet.labels",
-          "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/yamnet.labels"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/yamnet.labels"
         }
       ],
       "ApplicationTextDescription": "The gst-ai-audio-classification application shows the audio classification using the input from a file source and microphone. The classification results and video preview are displayed."
@@ -393,7 +395,7 @@
          "ModelName": "object_detection.tflite",
          "ModelDownloadURL": "",
          "LabelFile": "coco_labels.txt",
-         "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/detection.labels"
+         "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
        }
       ],
       "AIModelsSupportedByApplication": [
@@ -401,7 +403,7 @@
          "ModelName": "object_detection.tflite",
          "ModelDownloadURL": "",
          "LabelFile": "coco_labels.txt",
-         "LabelDownloadURL": "https://github.com/quic/sample-apps-for-qualcomm-linux/blob/main/artifacts/labels/detection.labels"
+         "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
        }
      ],
      "AIModelLocation": "/etc/models/",
@@ -436,70 +438,70 @@
         {
           "ModelName": "mobilenet_v2_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
 	  "AIModelsSupportedByApplication": [
         {
           "ModelName": "MobileNet-v2-Quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNet101Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet101Quantized/resolve/main/ResNet101Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNet101_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet101/resolve/b76679b37489e5597fa219d96120df420885292c/ResNet101_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "GoogLeNetQuantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/GoogLeNetQuantized/resolve/main/GoogLeNetQuantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "GoogLeNet_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/GoogLeNet/resolve/7730f17cce9298eb949a92e183ce43732607cfc5/GoogLeNet_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
           "ModelName": "MobileNet-v3-Large-Quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v3-Large-Quantized/resolve/main/MobileNet-v3-Large-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNet18Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet18Quantized/resolve/main/ResNet18Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNet18_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet18/resolve/ce2e9dc7ee59bf621868fd13bd435c7c476799eb/ResNet18_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNeXt50Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt50Quantized/resolve/main/ResNeXt50Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNeXt50_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt50/resolve/4d5e28ba752667aa66e9a57d963ff9810718a85d/ResNeXt50_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "ResNeXt101Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt101Quantized/resolve/main/ResNeXt101Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "ResNeXt101_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNeXt101/resolve/9a579111790c7008dcc553609da2b1590541e6d2/ResNeXt101_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "SqueezeNet-1_1Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1_1Quantized/resolve/main/SqueezeNet-1_1Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "SqueezeNet-1_1_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1_1/resolve/482b6e6aeedd8feed74849cb75783073ae10d2c6/SqueezeNet-1_1_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "WideResNet50-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/WideResNet50-Quantized/resolve/main/WideResNet50-Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "WideResNet50_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/WideResNet50/resolve/2e7e31b012d6dde029b2976a03a8ecc2da6be970/WideResNet50_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
         {
-          "ModelName": "Shufflenet-v2Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Shufflenet-v2Quantized/resolve/main/Shufflenet-v2Quantized.tflite",
-          "LabelFile": "imagenet_labels.txt",
-          "LabelDownloadURL": "https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/labels/imagenet_labels.txt"
+          "ModelName": "Shufflenet-v2_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Shufflenet-v2/resolve/5ab721591eaf8e6e3ee585610ad75889d16b1288/Shufflenet-v2_w8a8.tflite",
+          "LabelFile": "classification.labels",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates Daisychain of object detection and object classification for input coming from camera/file/rtsp"
