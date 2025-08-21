@@ -176,7 +176,7 @@ main() {
 
     # Download model and label files
     download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/2751392b3ca5e6e8cd3316f4c62501aa17c268e8/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/d182b62632d80d3d1690f6e13fec18dd09c05fdf/Midas-V2_w8a8.tflite" "${outputmodelpath}/midas_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
@@ -188,6 +188,7 @@ main() {
     download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolox.labels"
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolonas.labels"
+	download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/monodepth.labels" "${outputlabelpath}/monodepth.labels"
 
     if [ "$version" == "GA1.4-rel" ] || [ "$version" == "GA1.5-rel" ]; then
       # Download bin files for face recognition
