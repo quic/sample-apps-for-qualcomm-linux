@@ -135,7 +135,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/08c880fba08de69138c160d2052d6a94bdadae52/DeepLabV3-Plus-MobileNet_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         }
@@ -217,7 +217,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/08c880fba08de69138c160d2052d6a94bdadae52/DeepLabV3-Plus-MobileNet_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         },
