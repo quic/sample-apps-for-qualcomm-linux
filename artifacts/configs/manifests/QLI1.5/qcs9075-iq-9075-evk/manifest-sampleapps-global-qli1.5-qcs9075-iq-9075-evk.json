@@ -515,32 +515,32 @@
       "ApplicationTextDescription": "This application demonstrate the ability of the qmmfsrc to add or remove the streams runtime with camera reconfiguration"
     },
     {
-      "ApplicationName": "gst-camera-burst-capture-example",
-      "ApplicationTextDescription": "This app connects the camera with appsink element,once an appsink callback is connected to the new-sample signal,it saves buffer to device storage based on the capture type"
-    },
-    {
       "ApplicationName": "gst-camera-metadata-example",
       "ApplicationTextDescription": "This application Demonstrates executing of appsink when new sample is available in the pipeline then application extracts the buffer from the sample for further processing"
-    },
-    {
-      "ApplicationName": "gst-camera-shdr-ldc-eis-example",
-      "ApplicationTextDescription": "This application Demonstrates camera usecases with below possible features:SHDR, LDC, EIS"
     },
     {
       "ApplicationName": "gst-camera-single-stream-example",
       "ApplicationTextDescription": "This application Demonstrates single camera usecases with possible outputs, Live Camera Preview on Display, Store the Video encoder output, Dump the Camera YUV, Live RTSP streaming"
     },
     {
+      "ApplicationName": "gst-camera-switch-example",
+      "ApplicationTextDescription": "This application uses the two cameras of the device and switch them without changing the state of the pipeline. The switching is done in playing state every 5 seconds"
+    },
+    {
       "ApplicationName": "gst-multi-camera-example",
       "ApplicationTextDescription": "This application Demonstrates multicamera live preview on display or dumping video encoder output"
     },
     {
-      "ApplicationName": "gst-snapshot-stream-example",
-      "ApplicationTextDescription": "This application creates one preview stream and snapshot stream. One stream preview to display and another stream capture snapshots and dump to a file in JPEG format. Number of snapshot count is user defined"
-    },
-    {
       "ApplicationName": "gst-transform-example",
       "ApplicationTextDescription": "This is an application to demonstrate transform video stream such as rotate, flip and scale on input live camera stream or file source of H264 codec. Output goes to display and also dumps to mp4 file"
+    },
+    {
+      "ApplicationName": "gst-weston-composition-example",
+      "ApplicationTextDescription": "This application Demonstrates compostion using qtivcomposer for both picture in picture and side by side usecases. One input is from camera source and other is from AVC mp4 file source"
+    },
+    {
+      "ApplicationName": "gst-concurrent-videoplay-composition",
+      "ApplicationTextDescription": "This is an application to demonstrate the Concurrent video playback of any supported resolution and composition on display (Video wall)"
     }
   ]
 }
