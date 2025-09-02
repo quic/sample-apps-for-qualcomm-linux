@@ -24,12 +24,6 @@
       ],
 	  "AIModelsSupportedByApplication": [
         {
-          "ModelName": "MobileNet-v2-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite",
-          "LabelFile": "classification.labels",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
-        },
-        {
           "ModelName": "ResNet101_w8a8.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet101/resolve/b76679b37489e5597fa219d96120df420885292c/ResNet101_w8a8.tflite",
           "LabelFile": "classification.labels",
@@ -38,12 +32,6 @@
         {
           "ModelName": "GoogLeNet_w8a8.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/GoogLeNet/resolve/7730f17cce9298eb949a92e183ce43732607cfc5/GoogLeNet_w8a8.tflite",
-          "LabelFile": "classification.labels",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
-        },
-        {
-          "ModelName": "MobileNet-v3-Large-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v3-Large-Quantized/resolve/main/MobileNet-v3-Large-Quantized.tflite",
           "LabelFile": "classification.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
@@ -67,7 +55,7 @@
         },
         {
           "ModelName": "SqueezeNet-1_1_w8a8.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1_1/resolve/482b6e6aeedd8feed74849cb75783073ae10d2c6/SqueezeNet-1_1_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1.1/resolve/4c9931bba266cccad398b3d57d6deaddef24ca4b/SqueezeNet-1.1_w8a8.tflite",
           "LabelFile": "classification.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
@@ -93,7 +81,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         }
@@ -135,7 +123,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/fa276f89cce8ed000143d40e8887decbbea57012/DeepLabV3-Plus-MobileNet_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         }
@@ -217,7 +205,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/fa276f89cce8ed000143d40e8887decbbea57012/DeepLabV3-Plus-MobileNet_w8a8.tflite",
           "LabelFile": "deeplabv3_resnet50.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/deeplabv3_resnet50.labels"
         },
@@ -229,7 +217,7 @@
         },
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         },
@@ -249,7 +237,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         },
@@ -305,7 +293,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         },
@@ -325,7 +313,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         }
@@ -417,7 +405,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         }
@@ -431,24 +419,18 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/main/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
           "LabelFile": "coco_labels.txt",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels"
         },
         {
           "ModelName": "mobilenet_v2_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite",
           "LabelFile": "classification.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         }
       ],
 	  "AIModelsSupportedByApplication": [
-        {
-          "ModelName": "MobileNet-v2-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite",
-          "LabelFile": "classification.labels",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
-        },
         {
           "ModelName": "ResNet101_w8a8.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/ResNet101/resolve/b76679b37489e5597fa219d96120df420885292c/ResNet101_w8a8.tflite",
@@ -458,12 +440,6 @@
         {
           "ModelName": "GoogLeNet_w8a8.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/GoogLeNet/resolve/7730f17cce9298eb949a92e183ce43732607cfc5/GoogLeNet_w8a8.tflite",
-          "LabelFile": "classification.labels",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
-        },
-        {
-          "ModelName": "MobileNet-v3-Large-Quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/MobileNet-v3-Large-Quantized/resolve/main/MobileNet-v3-Large-Quantized.tflite",
           "LabelFile": "classification.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
@@ -487,7 +463,7 @@
         },
         {
           "ModelName": "SqueezeNet-1_1_w8a8.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1_1/resolve/482b6e6aeedd8feed74849cb75783073ae10d2c6/SqueezeNet-1_1_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/SqueezeNet-1.1/resolve/4c9931bba266cccad398b3d57d6deaddef24ca4b/SqueezeNet-1.1_w8a8.tflite",
           "LabelFile": "classification.labels",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels"
         },
