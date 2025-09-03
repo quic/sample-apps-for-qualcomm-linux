@@ -1,0 +1,4 @@
+[
+  {"id": 0, "color": "0x00FF00FF", "label": "face+landmark"},
+  {"id": 1, "color": "0xFFFF00FF", "label": "face"}
+]

@@ -1,0 +1,19 @@
+[
+  {"id": 0, "color": "0x00FF00FF", "label": "nose"},
+  {"id": 1, "color": "0x00FF00FF", "label": "left eye"},
+  {"id": 2, "color": "0x00FF00FF", "label": "right eye"},
+  {"id": 3, "color": "0x008000FF", "label": "left ear"},
+  {"id": 4, "color": "0x00FF00FF", "label": "right ear"},
+  {"id": 5, "color": "0x00FF00FF", "label": "left shoulder"},
+  {"id": 6, "color": "0x00FF00FF", "label": "right shoulder"},
+  {"id": 7, "color": "0x00FF00FF", "label": "left elbow"},
+  {"id": 8, "color": "0x00FF00FF", "label": "right elbow"},
+  {"id": 9, "color": "0x00FF00FF", "label": "left wrist"},
+  {"id": 10, "color": "0x00FF00FF", "label": "right wrist"},
+  {"id": 11, "color": "0x00FF00FF", "label": "left hip"},
+  {"id": 12, "color": "0x00FF00FF", "label": "right hip"},
+  {"id": 13, "color": "0x00FF00FF", "label": "left knee"},
+  {"id": 14, "color": "0x00FF00FF", "label": "right knee"},
+  {"id": 15, "color": "0x00FF00FF", "label": "left ankle"},
+  {"id": 16, "color": "0x00FF00FF", "label": "right ankle"}
+]

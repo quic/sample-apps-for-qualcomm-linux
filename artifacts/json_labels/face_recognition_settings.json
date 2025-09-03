@@ -1,0 +1,11 @@
+{
+  "confidence": 70.0,
+    "databases":[
+      {"id":  0, "database": "/opt/data/face0.bin"},
+      {"id":  1, "database": "/opt/data/face1.bin"},
+      {"id":  2, "database": "/opt/data/face2.bin"},
+      {"id":  3, "database": "/opt/data/face3.bin"},
+      {"id":  4, "database": "/opt/data/face4.bin"},
+      {"id":  5, "database": "/opt/data/face5.bin"}
+    ]
+}
