@@ -13,7 +13,7 @@
     {
       "ApplicationName": "gst-ai-classification",
       "ConfigFile": "config_classification.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-classification/config_classification.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-classification/config_classification.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "inception_v3_quantized.tflite",
@@ -77,7 +77,7 @@
     {
       "ApplicationName": "gst-ai-object-detection",
       "ConfigFile": "config_detection.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-object-detection/config_detection.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-object-detection/config_detection.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
@@ -105,7 +105,7 @@
     {
       "ApplicationName": "gst-ai-pose-detection",
       "ConfigFile": "config_pose.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-pose-detection/config_pose.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-pose-detection/config_pose.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "hrnet_pose_quantized.tflite",
@@ -119,7 +119,7 @@
     {
       "ApplicationName": "gst-ai-segmentation",
       "ConfigFile": "config_segmentation.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-segmentation/config_segmentation.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-segmentation/config_segmentation.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
@@ -153,7 +153,7 @@
     {
       "ApplicationName": "gst-ai-monodepth",
       "ConfigFile": "config_monodepth.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-monodepth/config_monodepth.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-monodepth/config_monodepth.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "midas_quantized.tflite",
@@ -233,7 +233,7 @@
     {
       "ApplicationName": "gst-ai-multistream-inference",
       "ConfigFile": "config-multistream-inference.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-multistream-inference/config-multistream-inference.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-multistream-inference/config-multistream-inference.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
@@ -253,7 +253,7 @@
     {
       "ApplicationName": "gst-ai-multistream-batch-inference",
       "ConfigFile": "config-multistream-batch-inference.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-multistream-batch-inference/config-multistream-batch-inference.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-multistream-batch-inference/config-multistream-batch-inference.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolov8_det_quantized.tflite",
@@ -309,7 +309,7 @@
     {
       "ApplicationName": "gst-ai-metadata-parser-example",
       "ConfigFile": "config-metadata-parser.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-metadata-parser-example/config-metadata-parser.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-metadata-parser-example/config-metadata-parser.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
@@ -363,7 +363,7 @@
     {
       "ApplicationName": "gst-ai-audio-classification",
       "ConfigFile": "config-audio-classification.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-audio-classification/config-audio-classification.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-audio-classification/config-audio-classification.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yamnet.tflite",
@@ -401,7 +401,7 @@
     {
       "ApplicationName": "gst-ai-usb-camera-detection",
       "ConfigFile": "config-usb-camera-app.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-usb-camera-app/config-usb-camera-app.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-usb-camera-app/config-usb-camera-app.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
@@ -415,7 +415,7 @@
     {
       "ApplicationName": "gst-ai-daisychain-detection-classification",
       "ConfigFile": "config_daisychain_detection_classification.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-daisychain-detection-classification/config_daisychain_detection_classification.json?inline=false",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/bf43208eaa24d1b1ed6a463b13f25dc75470893d/gst-sample-apps/gst-ai-daisychain-detection-classification/config_daisychain_detection_classification.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
