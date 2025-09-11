@@ -10,13 +10,13 @@ show_help() {
     echo "Usage: $0 -v <version> -c <chipset>"
     echo
     echo "Options:"
-    echo "  -v, --version    Select the release version to download (Available version: GA1.3-rel, GA1.4-rel, GA1.5-rel)"
+    echo "  -v, --version    Select the release version to download (Available version: GA1.3-rel, GA1.4-rel, GA1.5-rel, GA1.6-rel)"
     echo "  -c, --chipset    Select the chipset directory to copy files from (e.g., QCS6490, QCS9075)"
     echo "  -o, --outpath    Select the output directory to copy files to (e.g., /tmp). This is an optional parameter. Defaults to /opt if not provided."
     echo "  -h, --help       Help menu"
     echo
     echo "Example:"
-    echo "  ./download_artifacts.sh -v GA1.5-rel -c QCS6490"
+    echo "  ./download_artifacts.sh -v GA1.6-rel -c QCS6490"
 }
 
 # Function to check internet connectivity
@@ -169,9 +169,12 @@ main() {
     elif [ "$version" == "GA1.4-rel" ]; then
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.32_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath}
-    else
+    elif [ "$version" == "GA1.5-rel" ]; then
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.5-rel/v2.35_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.5-rel/labels.zip" ${outputlabelpath}
+    else
+        download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.6-rel/v2.38_${chipset}.zip" ${outputmodelpath}
+        download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.6-labels/labels.zip" ${outputlabelpath}
     fi
 
     # Download model and label files
@@ -181,16 +184,12 @@ main() {
     download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/e80b4d954ffaaefe2958e70b27bee77e74cc8550/Lightweight-Face-Detection_w8a8.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite" "${outputmodelpath}/mobilenet_v2_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
     download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
-    download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolox.labels"
-    download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolonas.labels"
-	download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/monodepth.labels" "${outputlabelpath}/monodepth.labels"
 
-    if [ "$version" == "GA1.4-rel" ] || [ "$version" == "GA1.5-rel" ]; then
+    if [ "$version" != "GA1.3-rel" ]; then
       # Download bin files for face recognition
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/blendShape.bin" "${outputdatapath}/"
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/meanFace.bin" "${outputdatapath}/"
