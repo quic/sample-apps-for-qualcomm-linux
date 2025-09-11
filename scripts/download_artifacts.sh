@@ -10,13 +10,13 @@ show_help() {
     echo "Usage: $0 -v <version> -c <chipset>"
     echo
     echo "Options:"
-    echo "  -v, --version    Select the release version to download (Available version: GA1.3-rel, GA1.4-rel, GA1.5-rel)"
+    echo "  -v, --version    Select the release version to download (Available version: GA1.3-rel, GA1.4-rel, GA1.5-rel, GA1.6-rel)"
     echo "  -c, --chipset    Select the chipset directory to copy files from (e.g., QCS6490, QCS9075)"
     echo "  -o, --outpath    Select the output directory to copy files to (e.g., /tmp). This is an optional parameter. Defaults to /opt if not provided."
     echo "  -h, --help       Help menu"
     echo
     echo "Example:"
-    echo "  ./download_artifacts.sh -v GA1.5-rel -c QCS6490"
+    echo "  ./download_artifacts.sh -v GA1.6-rel -c QCS6490"
 }
 
 # Function to check internet connectivity
@@ -169,28 +169,27 @@ main() {
     elif [ "$version" == "GA1.4-rel" ]; then
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/v2.32_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.4-rel/labels.zip" ${outputlabelpath}
-    else
+    elif [ "$version" == "GA1.5-rel" ]; then
       download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.5-rel/v2.35_${chipset}.zip" ${outputmodelpath}
       download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.5-rel/labels.zip" ${outputlabelpath}
+    else
+        download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.6-rel/v2.38_${chipset}.zip" ${outputmodelpath}
+        download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.6-labels/labels.zip" ${outputlabelpath}
     fi
 
     # Download model and label files
-    download_file "https://huggingface.co/qualcomm/Inception-v3-Quantized/resolve/main/Inception-v3-Quantized.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet-Quantized/resolve/main/DeepLabV3-Plus-MobileNet-Quantized.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Midas-V2-Quantized/resolve/main/Midas-V2-Quantized.tflite" "${outputmodelpath}/midas_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/HRNetPoseQuantized/resolve/main/HRNetPoseQuantized.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
-    download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/midasv2.dlc" "${outputmodelpath}/"
-    download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "${outputlabelpath}/"
-    download_file "https://huggingface.co/qualcomm/QuickSRNetSmall-Quantized/resolve/main/QuickSRNetSmall-Quantized.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection-Quantized/resolve/main/Lightweight-Face-Detection-Quantized.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/MobileNet-v2-Quantized/resolve/main/MobileNet-v2-Quantized.tflite" "${outputmodelpath}/mobilenet_v2_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection-Quantized/resolve/main/Facial-Landmark-Detection-Quantized.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection-Quantized/resolve/main/Facial-Attribute-Detection-Quantized.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/YamNet/resolve/main/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
+    download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/2751392b3ca5e6e8cd3316f4c62501aa17c268e8/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/d182b62632d80d3d1690f6e13fec18dd09c05fdf/Midas-V2_w8a8.tflite" "${outputmodelpath}/midas_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/e80b4d954ffaaefe2958e70b27bee77e74cc8550/Lightweight-Face-Detection_w8a8.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
     download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
-    download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolox.labels"
 
-    if [ "$version" == "GA1.4-rel" ] || [ "$version" == "GA1.5-rel" ]; then
+    if [ "$version" != "GA1.3-rel" ]; then
       # Download bin files for face recognition
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/blendShape.bin" "${outputdatapath}/"
       download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/data/meanFace.bin" "${outputdatapath}/"
