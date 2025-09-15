@@ -187,7 +187,7 @@ main() {
     download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
     download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
-    download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
+    download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
 
     if [ "$version" != "GA1.3-rel" ]; then
       # Download bin files for face recognition
