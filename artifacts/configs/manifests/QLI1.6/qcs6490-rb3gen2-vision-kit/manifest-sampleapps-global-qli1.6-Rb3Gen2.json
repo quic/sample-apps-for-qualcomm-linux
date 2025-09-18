@@ -1,6 +1,6 @@
 {
   "Version": "1.0.0",
-  "QliVersion": "1.5",
+  "QliVersion": "1.6",
   "DevKitName": "qcs9075-iq-9075-evk",
   "Locations": {
 	"AIModelLocation": "/etc/models/",
@@ -534,3 +534,4 @@
     }
   ]
 }
+
