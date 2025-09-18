@@ -24,7 +24,8 @@ if [ -z "$API_TOKEN" ]; then
 fi
 
 # Define the Miniconda installer URL
-MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+#MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-py310_25.7.0-2-Linux-x86_64.sh"
 
 # Define the installation directory
 INSTALL_DIR="$PWD/miniconda3"
@@ -53,6 +54,9 @@ rm miniconda.sh
 # Activate Conda
 echo "Activating Conda..."
 source $INSTALL_DIR/bin/activate
+
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
 # Create a Python 3.10 environment
 echo "Creating Python 3.10 environment..."
