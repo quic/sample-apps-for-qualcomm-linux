@@ -8,7 +8,7 @@
 ## Clone the project
 REPO_URL="https://github.com/Avnet/QCS6490-Vision-AI-Demo.git"
 TARGET_DIR="QCS6490-Vision-AI-Demo"
-BRANCH_NAME="QLI-1.5-and-1080p-support"
+BRANCH_NAME="main"
 
 # Check if the target directory already exists and is a valid Git repo
 if [ -d "$TARGET_DIR" ]; then
@@ -49,45 +49,17 @@ echo "✅ Repository is ready on branch '$BRANCH_NAME'."
 ## Continue with installation
 
 BASE_DIR=""
-WESTON_DIR=$BASE_DIR"/etc/xdg/weston"
 DEMO_APP_DIR=$BASE_DIR"/opt/QCS6490-Vision-AI-Demo"
+outputmodelpath="/etc/models"
+outputlabelpath="/etc/labels"
 
 echo "Make file system writable"
 mount -o remount,rw /
 
-# Create weston folder if not present
-mkdir -p "$WESTON_DIR"
-if [ $? -ne 0 ]; then
-    echo "Make file system writable - failed"
-    exit 1
-fi
-
-# Backup existing weston.ini if it exists and no backup exists yet
-if [ -f "$WESTON_DIR/weston.ini" ]; then
-    if [ ! -f "$WESTON_DIR/weston.ini.bak" ]; then
-        cp "$WESTON_DIR/weston.ini" "$WESTON_DIR/weston.ini.bak"
-        if [ $? -ne 0 ]; then
-            echo "Backup of existing weston.ini failed"
-            exit 1
-        else
-            echo "Backup created at $WESTON_DIR/weston.ini.bak"
-        fi
-    else
-        echo "Backup already exists at $WESTON_DIR/weston.ini.bak — skipping backup"
-    fi
-fi
-
-# Update weston.ini
-echo "Update weston.ini"
-yes | cp -rf weston.ini "$WESTON_DIR"
-if [ $? -ne 0 ]; then
-    echo "Update weston.ini - failed"
-    exit 1
-fi
-
+##### Make demo executable  #####
 chmod -R +x $DEMO_APP_DIR
 
-##### Download artifacts #####
+##### Download ML artifacts #####
 
 # Helper functions
 # Function to download files
@@ -131,18 +103,34 @@ outputlabelpath="/etc/labels"
 mkdir -p "${outputmodelpath}"
 mkdir -p "${outputlabelpath}"
 
+### Labels
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json" "${outputlabelpath}/hrnet_pose.json"
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/classification.json" "${outputlabelpath}/classification.json"
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/deeplabv3_resnet50.json" "${outputlabelpath}/deeplabv3_resnet50.json"
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json" "${outputlabelpath}/yolox.json"
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/monodepth.json" "${outputlabelpath}/monodepth.json"
 
-download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/hrnet_pose.labels" "${outputlabelpath}/hrnet_pose.labels"
-download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/classification.labels" "${outputlabelpath}/classification.labels"
-download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/voc_labels.txt" "${outputlabelpath}/voc_labels.txt"
-download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/labels/detection.labels" "${outputlabelpath}/yolox.labels"
-download_file "https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/models/midas/midasv2_linux_assets/monodepth.labels" "${outputlabelpath}/monodepth.labels"
 
+### Model files
 download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/60c6a08f58919a0dc7e005ec02bdc058abb1181b/Inception-v3_w8a8.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
-download_file "https://huggingface.co/qualcomm/FCN-ResNet50/resolve/3951b964f2b231d28ca0d04091dc661b0cc3f53c/FCN-ResNet50_w8a8.tflite" "${outputmodelpath}/fcn_resnet50_quantized.tflite"
+download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/fa276f89cce8ed000143d40e8887decbbea57012/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
 download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
 download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/13de42934d09fe7cda62d7841a218cbb323e7f7e/Midas-V2_w8a8.tflite" "${outputmodelpath}/midas_quantized.tflite"
 download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
 
-## Reboot the device
-reboot
+
+### Settings
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_settings.json" "${outputlabelpath}/hrnet_settings.json"
+
+
+### Install psutil
+echo "Checking for pip3..."
+if ! command -v pip3 &> /dev/null; then
+    echo "Error: pip3 is not installed. Cannot proceed with psutil installation."
+    exit 1
+fi
+
+echo "Installing psutil with pip3..."
+pip3 install --upgrade psutil
+
+echo "psutil installation complete."
