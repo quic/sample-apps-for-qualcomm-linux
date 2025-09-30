@@ -1,0 +1,28 @@
+diff --git a/samples/python/utils/install.py b/samples/python/utils/install.py
+index a683813..cd25f2f 100644
+--- a/samples/python/utils/install.py
++++ b/samples/python/utils/install.py
+@@ -39,7 +39,7 @@ ARIA2C_URL = "https://github.com/aria2/aria2/releases/download/release-1.36.0/ar
+ def setup_qai_hub(hub_id):
+     if os.path.isfile(QAI_HUB_CONFIG):
+         shutil.copy(QAI_HUB_CONFIG, QAI_HUB_CONFIG_BACKUP)
+-    run_command(f"qai-hub.exe configure --api_token {hub_id} > NUL", False)
++    run_command(f"qai-hub configure --api_token {hub_id} > NUL", False)
+ 
+ 
+ def reset_qai_hub():
+@@ -223,13 +223,7 @@ def download_url_wget(url, filepath, filesize=None, desc=None, fail=None):
+         os.makedirs(path, exist_ok=True)
+ 
+     try:
+-        wget_exe_path = "tools\\wget\\wget.exe"
+-        if not os.path.exists(wget_exe_path):
+-            wget_exe_path = "..\\python\\tools\\wget\\wget.exe"
+-
+-        if not os.path.exists(wget_exe_path):
+-            print(f"wget.exe not found. Please download it manually from '{WGET_URL}' and unzip it to '{wget_exe_path}'")
+-            return
++        wget_exe_path = "wget"
+ 
+         command = f'"{wget_exe_path}" --no-check-certificate -q --show-progress --continue -P "{path}" -O "{filepath}" {url}'
+         # print(command)
