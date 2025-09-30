@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------
+# Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+# ---------------------------------------------------------------------
+
+FROM --platform=arm64 ubuntu:24.04
+
+# Update the package list
+RUN apt-get update && \
+    apt-get clean && \
+    apt-get install -y \
+        cmake make gcc g++ wget unzip git && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /app/Image-Generation/
+WORKDIR /app/Image-Generation/
+RUN git clone https://github.com/quic/ai-engine-direct-helper.git --recursive && \
+    cd ai-engine-direct-helper && \
+    git pull --recurse-submodules
+
+COPY stable_diffusion_v1_5.py /app/Image-Generation/ai-engine-direct-helper/samples/python/stable_diffusion_v1_5/stable_diffusion_v1_5.py
+COPY utils.patch requirements.txt /app/Image-Generation/ai-engine-direct-helper/
+WORKDIR /app/Image-Generation/ai-engine-direct-helper
+RUN git apply utils.patch
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh && \
+    bash Miniconda3-latest-Linux-aarch64.sh -b && \
+    rm Miniconda3-latest-Linux-aarch64.sh
+RUN . ~/miniconda3/bin/activate && \
+    conda tos accept && \
+    conda create -n py312 python=3.12 && \
+    conda activate py312 && \
+    pip install -r requirements.txt
+RUN wget https://softwarecenter.qualcomm.com/api/download/software/sdks/Qualcomm_AI_Runtime_Community/All/2.34.0.250424/v2.34.0.250424.zip && \
+    unzip v2.34.0.250424.zip && chmod +x qairt/2.34.0.250424/bin/aarch64-oe-linux-gcc11.2/* && \
+    export  QNN_SDK_ROOT=/app/Image-Generation/ai-engine-direct-helper/qairt/2.34.0.250424/ && \
+    . ~/miniconda3/bin/activate && \
+    conda activate py312 && \
+    python setup.py bdist_wheel && \
+    pip install dist/qai_appbuilder-2.34.0-cp312-cp312-linux_aarch64.whl && \
+    mkdir -p /app/Image-Generation/ai-engine-direct-helper/samples/python/qai_libs/ && \
+    cp qairt/2.34.0.250424/lib/hexagon-v73/unsigned/* /app/Image-Generation/ai-engine-direct-helper/samples/python/qai_libs/ && \
+    cp qairt/2.34.0.250424/lib/aarch64-oe-linux-gcc11.2/* /app/Image-Generation/ai-engine-direct-helper/samples/python/qai_libs/ && \
+    rm -rf v2.34.0.250424.zip qairt
+RUN mv /root/miniconda3/envs/py312/lib/libstdc++.so.6 /root/miniconda3/envs/py312/lib/libstdc++.so.6.bak
+WORKDIR /app/Image-Generation/ai-engine-direct-helper/samples/python
+COPY run.sh /app/Image-Generation/ai-engine-direct-helper/samples/python/
+RUN chmod +x run.sh

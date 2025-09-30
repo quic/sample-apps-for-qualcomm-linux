@@ -1,0 +1,14 @@
+qai_hub_models==0.30.2
+numpy==1.26.4
+openai-whisper==20250625
+py3_wget==1.0.13
+flask==3.1.1
+wheel==0.45.1
+setuptools==75.8.0
+pybind11==2.13.6
+requests==2.32.4
+tqdm==4.67.1
+scikit-image==0.25.2
+samplerate==0.2.1
+torch==2.4.1
+audio2numpy==0.1.2
