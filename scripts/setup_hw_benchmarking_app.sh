@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #Sample installer command
 #makeself ~/demos/QCS6490-Vision-AI-Demo-Installer-project QCS6490-Vision-AI-Demo-Installer.run "Installing TRIA QCOMM demos" ./install.sh
