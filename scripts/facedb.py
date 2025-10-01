@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 from pathlib import Path
 import struct
 import argparse
@@ -43,4 +46,5 @@ with open("face.bin", mode='wb') as file:
         data = Path(tensorbin).read_bytes()
 
         file.write(data[:n_feature_bytes])
+
         file.write(data[:n_feature_bytes])
