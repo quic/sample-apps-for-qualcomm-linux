@@ -1,0 +1,65 @@
+# Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
+services:
+  web-ui:
+    image: web-ui:latest
+    platform: arm64
+    container_name: web-ui
+    hostname: web-ui
+    user: root
+    restart: always
+    command: bash run.sh
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - qualcomm.com/device=cdi-hw-acc
+    network_mode: host
+
+  text2text:
+    image: text2text:latest
+    platform: arm64
+    container_name: Text2Text
+    hostname: Text2Text
+    user: root
+    restart: always
+    command: bash run.sh
+    volumes:
+      - /opt/:/opt/
+      - /usr/lib/dsp/cdsp1/libc++.so.1:/usr/lib/dsp/cdsp1/libc++.so.1
+      - /usr/lib/dsp/cdsp1/libc++abi.so.1:/usr/lib/dsp/cdsp1/libc++abi.so.1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - qualcomm.com/device=cdi-hw-acc
+    expose:
+      - 8088    
+    network_mode: host
+  asr:
+    image: asr:latest
+    platform: arm64
+    container_name: ASR
+    hostname: ASR
+    user: root
+    restart: always
+    command: bash run.sh
+    volumes:
+      - /opt/:/opt/
+      - /usr/lib/dsp/cdsp1/libc++.so.1:/usr/lib/dsp/cdsp1/libc++.so.1
+      - /usr/lib/dsp/cdsp1/libc++abi.so.1:/usr/lib/dsp/cdsp1/libc++abi.so.1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - qualcomm.com/device=cdi-hw-acc
+    expose:
+      - 8081
+    network_mode: host
