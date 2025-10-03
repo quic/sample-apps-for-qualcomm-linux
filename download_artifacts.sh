@@ -123,11 +123,12 @@ main() {
         outputmodelpath="$outputpath"
         outputlabelpath="$outputpath"
         outputconfigpath="$outputpath"
+        outputdatapath="/etc/data/"
+        mkdir -p "${outputconfigpath}"
     else
         outputmodelpath="/etc/models/"
         outputlabelpath="/etc/labels/"
         outputconfigpath="/etc/configs/"
-        outputdatapath="/etc/data/"
         outputmediapath="/etc/media/"
     fi
 
@@ -140,7 +141,6 @@ main() {
 
     mkdir -p "${outputmodelpath}"
     mkdir -p "${outputlabelpath}"
-    mkdir -p "${outputconfigpath}"
     mkdir -p "${outputdatapath}"
     mkdir -p "${outputmediapath}"
 
@@ -177,17 +177,31 @@ main() {
         download_labels "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/GA1.6-labels/labels.zip" ${outputlabelpath}
     fi
 
-    # Download model and label files
-    download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/2751392b3ca5e6e8cd3316f4c62501aa17c268e8/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/d182b62632d80d3d1690f6e13fec18dd09c05fdf/Midas-V2_w8a8.tflite" "${outputmodelpath}/midas_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/e80b4d954ffaaefe2958e70b27bee77e74cc8550/Lightweight-Face-Detection_w8a8.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
-    download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
-    download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6fd936324856b519d239ee1/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
+    if [ "$version" == "GA1.4-rel" ] || [ "$version" == "GA1.3-rel" ]; then
+      download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/v0.29.1/Inception-v3_w8a8.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/2751392b3ca5e6e8cd3316f4c62501aa17c268e8/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/v0.29.1/Midas-V2_w8a8.tflite" "${outputmodelpath}/midas_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/v0.29.1/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/v0.30.3/Lightweight-Face-Detection_w8a8.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/v0.29.1/Facial-Landmark-Detection_w8a8.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/v0.29.1/Facial-Attribute-Detection_w8a8.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
+    fi
+
+    if [ "$version" == "GA1.5-rel" ] || [ "$version" == "GA1.6-rel" ]; then
+      # Download model and label files
+      download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite" "${outputmodelpath}/inception_v3_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/2751392b3ca5e6e8cd3316f4c62501aa17c268e8/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${outputmodelpath}/deeplabv3_plus_mobilenet_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/d182b62632d80d3d1690f6e13fec18dd09c05fdf/Midas-V2_w8a8.tflite" "${outputmodelpath}/midas_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite" "${outputmodelpath}/hrnet_pose_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite" "${outputmodelpath}/quicksrnetsmall_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/e80b4d954ffaaefe2958e70b27bee77e74cc8550/Lightweight-Face-Detection_w8a8.tflite" "${outputmodelpath}/face_det_lite_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite" "${outputmodelpath}/facemap_3dmm_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite" "${outputmodelpath}/face_attrib_net_quantized.tflite"
+      download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${outputmodelpath}/yamnet.tflite"
+      download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite" "${outputmodelpath}/yolox_quantized.tflite"
+    fi
 
     if [ "$version" != "GA1.3-rel" ]; then
       # Download bin files for face recognition
