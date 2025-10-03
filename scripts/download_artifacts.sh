@@ -129,6 +129,7 @@ main() {
         outputlabelpath="/etc/labels/"
         outputdatapath="/etc/data/"
 		outputmediapath="/etc/media/"
+		mkdir -p "${outputdatapath}"
     fi
 
     # Check if version and chipset are provided
@@ -140,7 +141,6 @@ main() {
 
     mkdir -p "${outputmodelpath}"
     mkdir -p "${outputlabelpath}"
-    mkdir -p "${outputdatapath}"
     mkdir -p "${outputmediapath}"
 
     if [ -w "${outputmodelpath}" ] && [ -w "${outputlabelpath}" ] && [ -w "${outputconfigpath}" ]; then
