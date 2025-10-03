@@ -143,22 +143,6 @@ main() {
     mkdir -p "${outputlabelpath}"
     mkdir -p "${outputmediapath}"
 
-    if [ -w "${outputmodelpath}" ] && [ -w "${outputlabelpath}" ] && [ -w "${outputconfigpath}" ]; then
-        if [ "$version" == "GA1.3-rel" ]; then
-            echo "Models, Labels, and Configs for ${chipset} Version ${version} will be downloaded to ${outputpath}"
-        else
-            echo "Models and Labels for ${chipset} Version ${version} will be downloaded to /etc/models and /etc/labels/"
-        fi
-    else
-        if [ "$version" == "GA1.3-rel" ]; then
-            echo "${outputpath} does not have write permissions."
-        else
-            echo "/etc/ does not have write permissions."
-            echo "Please provide a writable directory using -o option"
-            exit 1
-        fi
-    fi
-
     #check_internet
 
     # Download and unzip the specified version
