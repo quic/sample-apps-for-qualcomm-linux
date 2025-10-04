@@ -97,20 +97,47 @@ mkdir -p /etc/docker/
 sudo systemctl restart docker
 ```
 ## Docker containers
-## Steps to install arm64 qemu Docker driver on X86 machine
+## Steps to install arm64 qemu Docker driver on x86 machine
 ```
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx rm builder
 docker buildx create --name builder --driver docker-container --use
 docker buildx inspect --bootstrap
 ```
-## Build container images (Linux x86)
-#### NOTE: Run below commands on x86 machine
+## Build container images
+#### NOTE: Run below commands with **linux/arm64/v8** to build on x86 machine
+
+#### On Target
 ```
 cd Speech-To-Text
-docker  build --progress=plain --platform=linux/arm64/v8  -t asr .
+docker  build --progress=plain -t asr .
 docker save -o asr asr
 ```
+```
+cd Text-Generation
+docker  build --progress=plain -t text2text . 
+docker save text2image -o text2image
+```
+
+```
+cd Text-To-Speech
+docker  build --progress=plain -t text2speech . 
+docker save text2image -o text2speech
+```
+
+```
+cd web-ui
+docker  build --progress=plain -t web-ui . 
+docker save text2image -o web-ui
+```
+#### On x86
+
+```
+cd Speech-To-Text
+docker  build --progress=plain --platform=linux/arm64/v8 -t asr .
+docker save -o asr asr
+```
+
 ```
 cd Text-Generation
 docker  build --progress=plain --platform=linux/arm64/v8  -t text2text . 
@@ -191,5 +218,6 @@ docker-compose -f docker-compose.yml down
 ```
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
+
 
 
