@@ -18,6 +18,50 @@ services:
               device_ids:
                 - qualcomm.com/device=cdi-hw-acc
     network_mode: host
+  asr:
+    image: asr:latest
+    platform: arm64
+    container_name: ASR
+    hostname: ASR
+    user: root
+    restart: always
+    command: bash run.sh
+    volumes:
+      - /opt/asr/:/app/Speech-To-Text/ai-engine-direct-helper/samples/python/whisper_base_en/models/
+      - /usr/lib/dsp/cdsp1/libc++.so.1:/usr/lib/dsp/cdsp1/libc++.so.1
+      - /usr/lib/dsp/cdsp1/libc++abi.so.1:/usr/lib/dsp/cdsp1/libc++abi.so.1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - qualcomm.com/device=cdi-hw-acc
+    expose:
+      - 8081
+    network_mode: host
+  text2image:
+    image: text2image:latest
+    platform: arm64
+    container_name: Text2Image
+    hostname: Text2Image
+    user: root
+    restart: always
+    command: bash run.sh
+    volumes:
+      - /opt/text2img/:/app/Image-Generation/ai-engine-direct-helper/samples/python/stable_diffusion_v1_5/models/
+      - /usr/lib/dsp/cdsp1/libc++.so.1:/usr/lib/dsp/cdsp1/libc++.so.1
+      - /usr/lib/dsp/cdsp1/libc++abi.so.1:/usr/lib/dsp/cdsp1/libc++abi.so.1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - qualcomm.com/device=cdi-hw-acc
+    expose:
+      - 8082
+    network_mode: host
 
   text2text:
     image: text2text:latest
@@ -39,30 +83,9 @@ services:
               device_ids:
                 - qualcomm.com/device=cdi-hw-acc
     expose:
-      - 8088    
+      - 8088
     network_mode: host
-  asr:
-    image: asr:latest
-    platform: arm64
-    container_name: ASR
-    hostname: ASR
-    user: root
-    restart: always
-    command: bash run.sh
-    volumes:
-      - /opt/:/opt/
-      - /usr/lib/dsp/cdsp1/libc++.so.1:/usr/lib/dsp/cdsp1/libc++.so.1
-      - /usr/lib/dsp/cdsp1/libc++abi.so.1:/usr/lib/dsp/cdsp1/libc++abi.so.1
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: cdi
-              device_ids:
-                - qualcomm.com/device=cdi-hw-acc
-    expose:
-      - 8081
-    network_mode: host
+  
   text2speech:
     image: text2speech:latest
     platform: arm64
@@ -84,5 +107,5 @@ services:
               device_ids:
                 - qualcomm.com/device=cdi-hw-acc
     expose:
-      - 8081
+      - 8083
     network_mode: host
