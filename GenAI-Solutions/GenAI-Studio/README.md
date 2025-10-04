@@ -15,7 +15,6 @@ sudo apt update
 ```
 ```
 sudo apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev libqnn1 qnn-tools libsnpe1 snpe-tools qcom-property-vault gstreamer1.0-plugins-qcom-mlmetaparser gstreamer1.0-plugins-qcom-mlvpose
- 
 ```
 ### CDI setup
 
@@ -29,7 +28,7 @@ bash generate_cdi_json.sh
 ```
 ls /etc/cdi/docker-run-cdi-hw-acc.json
 ```
-
+##### Replace "/etc/cdi/docker-run-cdi-hw-acc.json" with [docker-run-cdi-hw-acc.json]("./docker-run-cdi-hw-acc.json") from this folder
 ```
 sudo chown -R ubuntu:ubuntu /opt/
 ```
@@ -98,7 +97,7 @@ mkdir -p /etc/docker/
 sudo systemctl restart docker
 ```
 ## Docker containers
-## Steps to install arm64 qemu Docker driver
+## Steps to install arm64 qemu Docker driver on X86 machine
 ```
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx rm builder
@@ -145,7 +144,11 @@ Follow https://github.com/quic/ai-hub-apps/tree/main/tutorials/llm_on_genie
 ```
 python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir genie_bundle
 ```
-##### NOTE: Push models folder genie_bundle to /opt/ on target device
+##### NOTE: Push models folder genie_bundle to "/opt/" on target device
+## TTS steps (linux x86)
+Follow https://qpm.qualcomm.com/#/main/tools/details/VoiceAI_TTS to generate models
+##### NOTE: Push models to "/opt/TTS_models/" on target device
+
 
 ## Start GenAI Studio (Target Device aarch64)
 ### Push docker-compose.yml file to device
@@ -163,6 +166,9 @@ docker-compose -f docker-compose.yml up -d
    "path": "/dev/kgsl-3d0"
 },
 ```
+
+If there are any other errors use "**[docker-run-cdi-hw-acc.json]("./docker-run-cdi-hw-acc.json")**" from this folder
+
 ### Network URL
 ```
 docker logs -f web-ui
@@ -185,4 +191,5 @@ docker-compose -f docker-compose.yml down
 ```
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
+
 
