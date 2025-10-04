@@ -14,7 +14,8 @@ sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-ppa
 sudo apt update
 ```
 ```
-sudo apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev libqnn1 qnn-tools libsnpe1 snpe-tools gstreamer1.0-qcom-sample-apps
+sudo apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev libqnn1 qnn-tools libsnpe1 snpe-tools qcom-property-vault gstreamer1.0-plugins-qcom-mlmetaparser gstreamer1.0-plugins-qcom-mlvpose
+ 
 ```
 ### CDI setup
 
@@ -147,6 +148,7 @@ python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-s
 ##### NOTE: Push models folder genie_bundle to /opt/ on target device
 
 ## Start GenAI Studio (Target Device aarch64)
+### Push docker-compose.yml file to device
 ```
 docker-compose -f docker-compose.yml up -d
 ```
@@ -183,3 +185,4 @@ docker-compose -f docker-compose.yml down
 ```
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
+
