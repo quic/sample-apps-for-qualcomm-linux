@@ -8,7 +8,7 @@ import streamlit as st
 st.set_page_config(page_title="Main Page", layout="wide")
 st.title("GenAI Studio")
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.image("static/assets/ASR.png", use_container_width=True)
     if st.button("\U0001F399 Automatic speech recognition (ASR)"):
@@ -21,3 +21,7 @@ with col3:
     st.image("static/assets/Text2Text.png",  use_container_width=True)
     if st.button("\U0001F4DD Text2Text"):
         st.switch_page("pages/Text2Text.py")
+with col4:
+    st.image("static/assets/Text2Speech.png",  use_container_width=True)
+    if st.button("\U0001F4DD Text2Speech"):
+        st.switch_page("pages/Text2Speech.py")

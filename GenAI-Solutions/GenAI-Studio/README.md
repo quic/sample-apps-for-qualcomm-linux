@@ -14,7 +14,7 @@ sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-ppa
 sudo apt update
 ```
 ```
-sudo apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev libqnn1 qnn-tools libsnpe1 snpe-tools
+sudo apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev libqnn1 qnn-tools libsnpe1 snpe-tools gstreamer1.0-qcom-sample-apps
 ```
 ### CDI setup
 
@@ -39,7 +39,7 @@ snpe-platform-validator --runtime dsp
 ```
 #### Expected output
 SNPE is supported for runtime DSP on the device
-![image](https://github.qualcomm.com/aicatalog/genai-studio/assets/30177/a24ab16d-bec7-402e-aba1-05f7bc72e022)
+![DSP_Runtime](./assets/dsp_runtime.png)
 
 ## Docker Installation
 #### Update package index
@@ -77,6 +77,9 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io  docker-compose
 ```
 sudo usermod -aG docker $USER
 ```
+```
+newgrp docker
+```
 
 ### Update /etc/docker/daemon.json
 ```
@@ -91,9 +94,16 @@ mkdir -p /etc/docker/
 }
 ```
 ```
-systemctl restart docker
+sudo systemctl restart docker
 ```
 ## Docker containers
+## Steps to install arm64 qemu Docker driver
+```
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker buildx rm builder
+docker buildx create --name builder --driver docker-container --use
+docker buildx inspect --bootstrap
+```
 ## Build container images (Linux x86)
 #### NOTE: Run below commands on x86 machine
 ```
@@ -106,6 +116,13 @@ cd Text-Generation
 docker  build --progress=plain --platform=linux/arm64/v8  -t text2text . 
 docker save text2image -o text2image
 ```
+
+```
+cd Text-To-Speech
+docker  build --progress=plain --platform=linux/arm64/v8  -t text2speech . 
+docker save text2image -o text2speech
+```
+
 ```
 cd web-ui
 docker  build --progress=plain --platform=linux/arm64/v8  -t web-ui . 
@@ -117,6 +134,7 @@ docker save text2image -o web-ui
 ```
 docker load -i asr
 docker load -i text2text
+docker load -i text2speech
 docker load -i web-ui
 ```
 ## LLM steps (Linux X86)
@@ -126,13 +144,14 @@ Follow https://github.com/quic/ai-hub-apps/tree/main/tutorials/llm_on_genie
 ```
 python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir genie_bundle
 ```
+##### NOTE: Push models folder genie_bundle to /opt/ on target device
 
 ## Start GenAI Studio (Target Device aarch64)
 ```
 docker-compose -f docker-compose.yml up -d
 ```
 #### Expected output
-![image](https://github.qualcomm.com/aicatalog/genai-studio/assets/30177/4b0e35aa-1fb6-4b7f-a8db-40b3562f40a8)
+![start_genai_studio](./assets/start_genai_studio.png)
 
 **NOTE:** If you face this error "CDI device injection failed: failed to inject devices: failed to stat CDI host device "/dev/kgsl-3d0": no such file or directory"
 
@@ -163,4 +182,4 @@ Click on http://192.168.0.4:8501 to open webpage
 docker-compose -f docker-compose.yml down
 ```
 #### Expected output
-![image](https://github.qualcomm.com/aicatalog/genai-studio/assets/30177/6db82450-22fe-4c4b-8990-ab2caac5894e)
+![stop_genai_studio](./assets/stop_genai_studio.png)

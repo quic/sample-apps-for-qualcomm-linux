@@ -63,3 +63,26 @@ services:
     expose:
       - 8081
     network_mode: host
+  text2speech:
+    image: text2speech:latest
+    platform: arm64
+    container_name: TTS
+    hostname: TTS
+    user: root
+    command: bash run.sh
+    restart: always
+    volumes:
+      - /opt/TTS_models/:/app/Text-To-Speech/models/
+      - /opt/:/app/Text-To-Speech/result/ENGLISH/
+      - /usr/lib/dsp/cdsp1/libc++.so.1:/usr/lib/dsp/cdsp1/libc++.so.1
+      - /usr/lib/dsp/cdsp1/libc++abi.so.1:/usr/lib/dsp/cdsp1/libc++abi.so.1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - qualcomm.com/device=cdi-hw-acc
+    expose:
+      - 8081
+    network_mode: host
