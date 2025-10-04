@@ -174,6 +174,7 @@ docker save web-ui -o web-ui
 docker load -i asr
 docker load -i text2text
 docker load -i text2speech
+docker load -i text2image
 docker load -i web-ui
 ```
 ## LLM steps (Linux X86)
@@ -230,6 +231,7 @@ docker-compose -f docker-compose.yml down
 ```
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
+
 
 
 
