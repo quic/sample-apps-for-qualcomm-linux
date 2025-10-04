@@ -28,7 +28,7 @@ bash generate_cdi_json.sh
 ```
 ls /etc/cdi/docker-run-cdi-hw-acc.json
 ```
-##### Replace "/etc/cdi/docker-run-cdi-hw-acc.json" with [docker-run-cdi-hw-acc.json]("./docker-run-cdi-hw-acc.json") from this folder
+##### Replace "/etc/cdi/docker-run-cdi-hw-acc.json" with [docker-run-cdi-hw-acc.json](docker-run-cdi-hw-acc.json) from this folder
 ```
 sudo chown -R ubuntu:ubuntu /opt/
 ```
@@ -194,7 +194,7 @@ docker-compose -f docker-compose.yml up -d
 },
 ```
 
-If there are any other errors use "**[docker-run-cdi-hw-acc.json]("./docker-run-cdi-hw-acc.json")**" from this folder
+If there are any other errors use "**[docker-run-cdi-hw-acc.json](docker-run-cdi-hw-acc.json)**" from this folder
 
 ### Network URL
 ```
@@ -218,6 +218,7 @@ docker-compose -f docker-compose.yml down
 ```
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
+
 
 
 
