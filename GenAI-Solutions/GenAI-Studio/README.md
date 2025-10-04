@@ -116,19 +116,25 @@ docker save -o asr asr
 ```
 cd Text-Generation
 docker  build --progress=plain -t text2text . 
-docker save text2image -o text2image
+docker save text2text -o text2text
 ```
 
 ```
 cd Text-To-Speech
 docker  build --progress=plain -t text2speech . 
-docker save text2image -o text2speech
+docker save text2speech -o text2speech
+```
+
+```
+cd Image-Generation
+docker  build --progress=plain -t text2image . 
+docker save text2image -o text2image
 ```
 
 ```
 cd web-ui
 docker  build --progress=plain -t web-ui . 
-docker save text2image -o web-ui
+docker save web-ui -o web-ui
 ```
 #### On x86
 
@@ -141,19 +147,25 @@ docker save -o asr asr
 ```
 cd Text-Generation
 docker  build --progress=plain --platform=linux/arm64/v8  -t text2text . 
-docker save text2image -o text2image
+docker save text2text -o text2text
 ```
 
 ```
 cd Text-To-Speech
 docker  build --progress=plain --platform=linux/arm64/v8  -t text2speech . 
-docker save text2image -o text2speech
+docker save text2speech -o text2speech
+```
+
+```
+cd Image-Generation
+docker  build --progress=plain --platform=linux/arm64/v8  -t text2image . 
+docker save text2image -o text2image
 ```
 
 ```
 cd web-ui
 docker  build --progress=plain --platform=linux/arm64/v8  -t web-ui . 
-docker save text2image -o web-ui
+docker save web-ui -o web-ui
 ```
 
 ## Pre-built container images (aarch64)
@@ -218,6 +230,7 @@ docker-compose -f docker-compose.yml down
 ```
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
+
 
 
 
