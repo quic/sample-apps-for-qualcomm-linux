@@ -2,7 +2,7 @@
 
 # Sample applications for Qualcomm® Linux platforms
 
-Sample applications for Qualcomm® Linux repository provide sample applications to demonstrate the capability of Qualcomm Linux platforms.
+Sample applications for Qualcomm® Linux repository provide sample applications and its artifacts to demonstrate the capability of Qualcomm Linux platforms.
 
 ## Build Sample Applications
 ### Generate the eSDK containing the cross-compiler tool chain
