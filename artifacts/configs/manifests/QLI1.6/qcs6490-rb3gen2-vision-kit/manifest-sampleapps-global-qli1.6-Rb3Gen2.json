@@ -76,12 +76,12 @@
     },
     {
       "ApplicationName": "gst-ai-object-detection",
-      "ConfigFile": "config_yolox.json",
-      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-object-detection/config_yolox.json?inline=false",
+      "ConfigFile": "config_detection.json",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-object-detection/config_detection.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         }
@@ -111,7 +111,9 @@
           "ModelName": "hrnet_pose_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite",
           "LabelFile": "hrnet_pose.json",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json",
+          "LabelSettingsFile": "hrnet_settings.json",
+          "LabelSettingsDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_settings.json"
         }
       ],
       "ApplicationTextDescription": "This application allows Pose Detection of human target using Camera, File and RTSP. The use cases supports Qualcomm Neural Processing SDK, LiteRT, or Qualcomm AI Engine direct models."
@@ -123,7 +125,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         }
@@ -227,11 +229,13 @@
           "ModelName": "hrnet_pose_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite",
           "LabelFile": "hrnet_pose.json",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json",
+          "LabelSettingsFile": "hrnet_settings.json",
+          "LabelSettingsDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_settings.json"
         },
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         },
@@ -251,7 +255,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         },
@@ -307,7 +311,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         },
@@ -315,7 +319,9 @@
           "ModelName": "hrnet_pose_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/HRNetPose/resolve/dbfe1866bd2dbfb9eecb32e54b8fcdc23d77098b/HRNetPose_w8a8.tflite",
           "LabelFile": "hrnet_pose.json",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_pose.json",
+          "LabelSettingsFile": "hrnet_settings.json",
+          "LabelSettingsDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_settings.json"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates Daisychain of object detection and pose detection for input coming from camera/file/rtsp"
@@ -327,7 +333,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         }
@@ -363,13 +369,15 @@
           "ModelName": "face_attrib_net_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/228624993581944d488f232ae50174795d489661/Facial-Attribute-Detection_w8a8.tflite",
           "LabelFile": "face_recognition.json",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/face_recognition.json"
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/face_recognition.json",
+          "LabelSettingsFile":"face_recognition_settings.json",
+          "LabelSettingsDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/face_recognition_settings.json"
         },
         {
           "ModelName": "facemap_3dmm_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite",
-          "LabelFile": "face_landmark.json",
-          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/face_landmark.json"
+          "LabelFile": "facemap_3dmm_settings.json",
+          "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/facemap_3dmm_settings.json"
         }
       ],
       "ApplicationTextDescription": "This application demonstrates face recognition on the live video input from a camera or an RTSP stream."
@@ -419,7 +427,7 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
           "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         }
@@ -433,12 +441,12 @@
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
-          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/b77d86157162962603b0385664cf141356cb1121/Yolo-X_w8a8.tflite",
-          "LabelFile": "coco_labels.txt",
+          "ModelDownloadURL": "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite",
+          "LabelFile": "yolox.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/yolox.json"
         },
         {
-          "ModelName": "mobilenet_v2_quantized.tflite",
+          "ModelName": "inception_v3_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite",
           "LabelFile": "classification.json",
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/classification.json"
