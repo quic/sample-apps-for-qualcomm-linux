@@ -55,6 +55,17 @@ check_env_vars () {
 
 }
 
+get_snpe_version() {
+    # Run snpe-net-run --version and capture output
+    local output=$(snpe-net-run --version 2>&1)
+
+    # Extract 6 characters after "SNPE v"
+    local version=$(echo "$output" | grep -oP 'SNPE v\K.{4}')
+
+    # Return the version
+    echo "$version"
+}
+
 # Function to download and unzip files
 download_models() {
     local url=$1
@@ -98,6 +109,8 @@ main() {
     local version=""
     local chipset=""
     local outputpath="/opt"
+    local snpe_version=""
+    local qli_release=""
 
     check_env_vars
     if [ ! -z "$env_sdk_version" ]; then
@@ -128,8 +141,8 @@ main() {
         outputmodelpath="/etc/models/"
         outputlabelpath="/etc/labels/"
         outputdatapath="/etc/data/"
-		outputmediapath="/etc/media/"
-		mkdir -p "${outputdatapath}"
+	outputmediapath="/etc/media/"
+	mkdir -p "${outputdatapath}"
     fi
 
     # Check if version and chipset are provided
