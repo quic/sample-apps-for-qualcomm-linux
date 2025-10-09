@@ -1,0 +1,8 @@
+{
+  "confidence": 70.0,
+  "databases": [
+    {"name": "mean-face", "location": "/etc/data/meanFace.bin"},
+    {"name": "shape-basis", "location": "/etc/data/shapeBasis.bin"},
+    {"name": "blend-shape", "location": "/etc/data/blendShape.bin"}
+  ]
+}
