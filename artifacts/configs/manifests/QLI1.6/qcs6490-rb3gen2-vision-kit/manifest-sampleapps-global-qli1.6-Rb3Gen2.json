@@ -188,8 +188,8 @@
         {
           "ModelName": "quicksrnetsmall_quantized.tflite",
           "ModelDownloadURL": "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/977fb3092a065d512cd587c210cc1341b28b7161/QuickSRNetSmall_w8a8.tflite",
-          "LabelFile": "NA",
-          "LabelDownloadURL": "NA"
+          "LabelFile": "",
+          "LabelDownloadURL": ""
         }
       ],
 	  "AIModelsSupportedByApplication": [
@@ -542,4 +542,5 @@
     }
   ]
 }
+
 
