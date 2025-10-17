@@ -4,7 +4,7 @@
   "DevKitName": "qcs9075-iq-9075-evk",
   "Locations": {
 	"AIModelLocation": "/etc/models/",
-	"AILabelLocation": "/etc/json_labels/",
+	"AILabelLocation": "/etc/labels/",
   	"FileUrl":"https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video.mp4",
  	"Filepath":"/etc/media/",
 	"ConfigFileLocation": "/etc/configs/"
@@ -182,8 +182,8 @@
     },
     {
       "ApplicationName": "gst-ai-superresolution",
-      "ConfigFile": "",
-      "ConfigDownloadURL": "",
+      "ConfigFile": "config-superresolution.json",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-superresolution/config-superresolution.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "quicksrnetsmall_quantized.tflite",
@@ -216,8 +216,8 @@
     },
     {
       "ApplicationName": "gst-ai-parallel-inference",
-      "ConfigFile": "",
-      "ConfigDownloadURL": "",
+      "ConfigFile": "config-parallel-inference.json",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-parallel-inference/config-parallel-inference.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "deeplabv3_plus_mobilenet_quantized.tflite",
@@ -292,8 +292,8 @@
     },
     {
       "ApplicationName": "gst-ai-multi-input-output-object-detection",
-      "ConfigFile": "",
-      "ConfigDownloadURL": "",
+      "ConfigFile": "config-multi-input-output-object-detection.json",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-multi-input-output-object-detection/config-multi-input-output-object-detection.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolov5.tflite",
@@ -306,8 +306,8 @@
     },
     {
       "ApplicationName": "gst-ai-daisychain-detection-pose",
-      "ConfigFile": "",
-      "ConfigDownloadURL": "",
+      "ConfigFile": "config-daisychain-detection-pose.json",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-daisychain-detection-pose/config-daisychain-detection-pose.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "yolox_quantized.tflite",
@@ -343,7 +343,7 @@
     {
       "ApplicationName": "gst-ai-face-detection",
       "ConfigFile": "config_face_detection.json",
-      "ConfigDownloadURL": "TBD",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-face-detection/config_face_detection.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "face_det_lite_quantized.tflite",
@@ -357,7 +357,7 @@
     {
       "ApplicationName": "gst-ai-face-recognition",
       "ConfigFile": "config-face-recognition.json",
-      "ConfigDownloadURL": "TBD",
+      "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-face-recognition/config-face-recognition.json?inline=false",
       "AIModelsNeededByApplication": [
         {
           "ModelName": "face_det_lite_quantized.tflite",
@@ -542,3 +542,4 @@
     }
   ]
 }
+
