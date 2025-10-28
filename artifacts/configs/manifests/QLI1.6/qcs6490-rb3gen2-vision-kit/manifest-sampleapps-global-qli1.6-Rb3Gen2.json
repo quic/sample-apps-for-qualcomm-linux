@@ -421,7 +421,7 @@
      "ApplicationTextDescription": "The gst-ai-audio-classification application shows the audio classification using the input from a file source and microphone. The classification results and video preview are displayed."
     },
     {
-      "ApplicationName": "gst-ai-usb-camera-detection",
+      "ApplicationName": "gst-ai-usb-camera-app",
       "ConfigFile": "config-usb-camera-app.json",
       "ConfigDownloadURL": "https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/gst-plugins-qti-oss/-/raw/imsdk.lnx.2.0.0.r2-rel/gst-sample-apps/gst-ai-usb-camera-app/config-usb-camera-app.json?inline=false",
       "AIModelsNeededByApplication": [
@@ -542,5 +542,6 @@
     }
   ]
 }
+
 
 
