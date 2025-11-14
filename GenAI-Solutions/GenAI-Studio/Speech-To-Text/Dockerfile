@@ -9,8 +9,8 @@ FROM --platform=arm64 ubuntu:24.04
 RUN apt-get update && \
     apt-get clean && \
     apt-get install -y cmake make gcc g++ wget unzip git aria2 && \
-    apt-get install -y software-properties-common && \
-    apt-add-repository -s ppa:ubuntu-qcom-iot/qcom-ppa && \
+    apt-get install -y software-properties-common
+RUN apt-add-repository -s ppa:ubuntu-qcom-iot/qcom-ppa && \
     apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev && \
     rm -rf /var/lib/apt/lists/*
 
@@ -18,12 +18,13 @@ RUN mkdir -p /app/Speech-To-Text/
 WORKDIR /app/Speech-To-Text/
 RUN git clone https://github.com/quic/ai-engine-direct-helper.git --recursive && \
     cd ai-engine-direct-helper && \
-    git pull --recurse-submodules
+    git pull --recurse-submodules && \
+    git checkout 3fd2c54
 
 COPY whisper_base_en.py /app/Speech-To-Text/ai-engine-direct-helper/samples/python/whisper_base_en/whisper_base_en.py
 COPY utils.patch requirements.txt /app/Speech-To-Text/ai-engine-direct-helper/
 WORKDIR /app/Speech-To-Text/ai-engine-direct-helper
-RUN git checkout 3fd2c54 && git apply utils.patch
+RUN git apply utils.patch
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh && \
     bash Miniconda3-latest-Linux-aarch64.sh -b && \
     rm Miniconda3-latest-Linux-aarch64.sh

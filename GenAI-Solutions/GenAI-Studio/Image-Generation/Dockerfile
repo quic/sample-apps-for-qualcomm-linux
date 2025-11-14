@@ -19,12 +19,13 @@ RUN mkdir -p /app/Image-Generation/
 WORKDIR /app/Image-Generation/
 RUN git clone https://github.com/quic/ai-engine-direct-helper.git --recursive && \
     cd ai-engine-direct-helper && \
-    git pull --recurse-submodules
+    git pull --recurse-submodules && \
+    git checkout 3fd2c54
 
 COPY stable_diffusion_v1_5.py /app/Image-Generation/ai-engine-direct-helper/samples/python/stable_diffusion_v1_5/stable_diffusion_v1_5.py
 COPY utils.patch requirements.txt /app/Image-Generation/ai-engine-direct-helper/
 WORKDIR /app/Image-Generation/ai-engine-direct-helper
-RUN git checkout 3fd2c54 && git apply utils.patch
+RUN git apply utils.patch
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh && \
     bash Miniconda3-latest-Linux-aarch64.sh -b && \
     rm Miniconda3-latest-Linux-aarch64.sh
