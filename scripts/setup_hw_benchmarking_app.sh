@@ -1,6 +1,4 @@
 #!/bin/bash
-# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #Sample installer command
 #makeself ~/demos/QCS6490-Vision-AI-Demo-Installer-project QCS6490-Vision-AI-Demo-Installer.run "Installing TRIA QCOMM demos" ./install.sh
@@ -10,7 +8,7 @@
 ## Clone the project
 REPO_URL="https://github.com/Avnet/QCS6490-Vision-AI-Demo.git"
 TARGET_DIR="QCS6490-Vision-AI-Demo"
-BRANCH_NAME="main"
+BRANCH_NAME="QLI_1.6"
 
 # Check if the target directory already exists and is a valid Git repo
 if [ -d "$TARGET_DIR" ]; then
@@ -122,17 +120,4 @@ download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/2885648dda847885e6
 
 
 ### Settings
-download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_settings.json" "${outputlabelpath}/hrnet_settings.json"
-
-
-### Install psutil
-echo "Checking for pip3..."
-if ! command -v pip3 &> /dev/null; then
-    echo "Error: pip3 is not installed. Cannot proceed with psutil installation."
-    exit 1
-fi
-
-echo "Installing psutil with pip3..."
-pip3 install --upgrade psutil
-
-echo "psutil installation complete."
+download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/hrnet_settings.json" "${outputlabelpath}/hrnet_settings.json"z

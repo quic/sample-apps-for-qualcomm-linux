@@ -1,0 +1,54 @@
+{
+  "confidence": 51.0,
+  "connections": [
+    {"id": 5, "connection": 6},
+    {"id": 6, "connection": 12},
+    {"id": 7, "connection": 9},
+    {"id": 8, "connection": 10},
+    {"id": 9, "connection": 7},
+    {"id": 10, "connection": 8},
+    {"id": 11, "connection": 5},
+    {"id": 13, "connection": 11},
+    {"id": 14, "connection": 12},
+    {"id": 15, "connection": 13},
+    {"id": 16, "connection": 14}
+  ],
+  "posenet": [
+    {"id": 0, "links": [
+      1,
+      2,
+      5,
+      6
+    ]},
+    {"id": 1, "links": [
+      3
+    ]},
+    {"id": 2, "links": [
+      4
+    ]},
+    {"id": 5, "links": [
+      7, 11
+    ]},
+    {"id": 6, "links": [
+      8, 12
+    ]},
+    {"id": 7, "links": [
+      9
+    ]},
+    {"id": 8, "links": [
+      10
+    ]},
+    {"id": 11, "links": [
+      13
+    ]},
+    {"id": 12, "links": [
+      14
+    ]},
+    {"id": 13, "links": [
+      15
+    ]},
+    {"id": 14, "links": [
+      16
+    ]}
+  ]
+}
