@@ -232,6 +232,8 @@ docker-compose -f docker-compose.yml down
 #### Expected output
 ![stop_genai_studio](./assets/stop_genai_studio.png)
 
+# Demo
+![](./assets/demo.mp4)
 
 
 
