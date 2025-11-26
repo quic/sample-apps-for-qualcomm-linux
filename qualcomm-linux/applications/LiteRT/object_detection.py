@@ -1,4 +1,9 @@
-
+# -----------------------------------------------------------------------------
+#
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# -----------------------------------------------------------------------------
 #!/usr/bin/env python3
 import cv2
 import numpy as np
@@ -137,3 +142,4 @@ else:
     appsrc.emit('end-of-stream')
     pipeline.set_state(Gst.State.NULL)
     print("Done – video streamed to Wayland sink")
+
