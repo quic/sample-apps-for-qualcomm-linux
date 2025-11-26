@@ -20,10 +20,10 @@ parser.add_argument("--output", choices=["file", "wayland"], default="file",
 args = parser.parse_args()
 
 # -------------------- Parameters --------------------
-MODEL_PATH = "/home/ubuntu/yolov8_det_quantized.tflite"
+MODEL_PATH = "/etc/models/yolox_quantized.tflite"
 LABEL_PATH = "/etc/labels/coco_labels.txt"
 VIDEO_IN = "/etc/media/video.mp4"
-VIDEO_OUT = "output_with_boxes.mp4"
+VIDEO_OUT = "output_object_detection.mp4"
 DELEGATE_PATH = "libQnnTFLiteDelegate.so"
 
 FRAME_W, FRAME_H = 1600, 900
@@ -142,4 +142,5 @@ else:
     appsrc.emit('end-of-stream')
     pipeline.set_state(Gst.State.NULL)
     print("Done – video streamed to Wayland sink")
+
 
