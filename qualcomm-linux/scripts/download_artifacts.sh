@@ -39,6 +39,7 @@ copy_videos() {
     local output_media_dir=$1
     local media_file=$2
 
+    # echo "Copying ${media_file}"
     for i in $(seq -w 2 16); do
         cp "${output_media_dir}/${media_file}" "${output_media_dir}/video${i}.mp4"
     done
@@ -61,30 +62,22 @@ check_build_type() {
         build_type="QLI"
 
     else
-        ppa_version=$(apt-cache policy gstreamer1.0-qcom-sample-apps 2>/dev/null \
-                      | awk '/Candidate:/ {print $2}' | grep -o '[0-9]\{5\}')
-        
-        if [[ "$ppa_version" =~ ^[0-9]+$ ]] && (( 10#$ppa_version == 5900 )); then
-            ga_version_check="GA1.5-rel"
-            build_type="Ubuntu"
-        else
-            echo "This is not the latest Ubuntu build"
-            return 1
-        fi
+        build_type="Ubuntu"
     fi
 
     echo "The build type is ${build_type}"
-    echo "GA Version of the device: ${ga_version_check}"
+    # echo "GA Version of the device: ${ga_version_check}"
 }
 
 # Determines the device build type (QLI or Ubuntu) and GA version based on system information and package checks.
 check_qairt_version() {
+    qairt_version=""
     if command -v snpe-net-run >/dev/null 2>&1; then
         raw=$(snpe-net-run --version 2>&1 | awk '{print $2}' | sed 's/.*v//')
         echo "SNPE runtime detected"
         echo "SNPE version: ${raw}"
         
-        IFS='.' read -r major minor patch build <<< "$raw"
+        split_qairt_version $raw
         qairt_short_version="${major}.${minor}"
         qairt_version="${major}.${minor}.${patch}.${build:0:6}"
         return 0
@@ -96,13 +89,31 @@ check_qairt_version() {
             echo "QNN runtime detected"
             echo "QNN version: ${raw}"
             
-            IFS='.' read -r major minor patch build <<< "$raw"
+            split_qairt_version $raw
             qairt_short_version="${major}.${minor}"
             qairt_version="${major}.${minor}.${patch}.${build:0:6}"
             return 0
         fi
     fi
     return 1
+}
+
+# Splits the QAIRT version to extract major minor patch and build values of the release
+split_qairt_version() {
+    local raw=$1
+    IFS='.' read -r major minor patch build <<< "$raw"
+}
+
+# Mapping of the QAIRT Version and its supported Model Version on AI HUB
+declare -A qairt_map=(
+    ["2.39.0.250925"]="v0.40.0"
+)
+
+# Extracts the latest QAIRT version that is available
+extract_latest_qairt_version() {
+    qairt_version=$(printf "%s\n" "${!qairt_map[@]}" | sort -V | tail -n 1)
+    split_qairt_version $qairt_version
+    qairt_short_version="${major}.${minor}"
 }
 
 # Fetches a zip file from the given URL, extracts its contents (model files) into the specified directory, and deletes the downloaded archive and temporary folder.
@@ -155,7 +166,7 @@ create_directory() {
 # Downloads the necessary TFLite and DLC models
 download_model_artifacts() {
     
-    if awk "BEGIN {exit !($qairt_short_version < 2.38)}"; then
+    if awk "BEGIN {exit !($qairt_short_version < 2.39)}"; then
         output_path="/opt"
         adjusted_qairt_version=$(awk "BEGIN {
             v=$qairt_short_version-0.01;
@@ -167,6 +178,7 @@ download_model_artifacts() {
             2.29) ga_version="GA1.3-rel" ;;
             2.32) ga_version="GA1.4-rel" ;;
             2.35) ga_version="GA1.5-rel" ;;
+            2.38) ga_version="GA1.6-rel" ;;
         esac
 
         if [ "$ga_version" == "GA1.3-rel" ]; then
@@ -196,8 +208,10 @@ download_model_artifacts() {
             download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${ga_version}/v2.29_${chipset}.zip" ${output_model_path}   
         elif [ "$ga_version" == "GA1.4-rel" ]; then
             download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${ga_version}/v2.32_${chipset}.zip" ${output_model_path}
-        else
+        elif [ "$ga_version" == "GA1.5-rel" ]; then
             download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${ga_version}/v2.35_${chipset}.zip" ${output_model_path}
+        else
+            download_models "https://github.com/quic/sample-apps-for-qualcomm-linux/releases/download/${ga_version}/v2.38_${chipset}.zip" ${output_model_path}
         fi
 
         if [ "$ga_version" == "GA1.4-rel" ] || [ "$ga_version" == "GA1.3-rel" ]; then
@@ -212,7 +226,7 @@ download_model_artifacts() {
             download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${output_model_path}/yamnet.tflite"
         fi
 
-        if [ "$ga_version" == "GA1.5-rel" ]; then
+        if [ "$ga_version" == "GA1.5-rel" ] || [ "$ga_version" == "GA1.6-rel" ]; then
             download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/ba8121b0a74c7e28b45b250064c26efc7e7da29e/Inception-v3_w8a8.tflite" "${output_model_path}/inception_v3_quantized.tflite"
             download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/2751392b3ca5e6e8cd3316f4c62501aa17c268e8/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${output_model_path}/deeplabv3_plus_mobilenet_quantized.tflite"
             download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/d182b62632d80d3d1690f6e13fec18dd09c05fdf/Midas-V2_w8a8.tflite" "${output_model_path}/midas_quantized.tflite"
@@ -236,59 +250,62 @@ download_model_artifacts() {
         fi
 
     else
-        case "$qairt_version" in
-            2.38.0.250901) model_version="v0.38.0" ;;
-            2.39.0.250925) model_version="v0.40.0" ;;
-            *) model_version="" ;; 
-        esac
-
-        if [ -z "$model_version" ]; then
-            echo "QAIRT version not supported"
-            exit 1
-        else
-            output_model_path="/etc/models"
-            output_label_path="/etc/labels"
-            output_data_path="/etc/data"
-            output_media_path="/etc/media"
-
-            create_directory "$output_model_path"
-            create_directory "$output_label_path"
-            create_directory "$output_data_path"
-            create_directory "$output_media_path"
-
-            #tflite models
-            download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/${model_version}/Inception-v3_w8a8.tflite" "${output_model_path}/inception_v3_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/${model_version}/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${output_model_path}/deeplabv3_plus_mobilenet_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/${model_version}/Midas-V2_w8a8.tflite" "${output_model_path}/midas_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/${model_version}/HRNetPose_w8a8.tflite" "${output_model_path}/hrnet_pose_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/${model_version}/QuickSRNetSmall_w8a8.tflite" "${output_model_path}/quicksrnetsmall_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/${model_version}/Lightweight-Face-Detection_w8a8.tflite" "${output_model_path}/face_det_lite_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/${model_version}/Facial-Landmark-Detection_w8a8.tflite" "${output_model_path}/facemap_3dmm_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/${model_version}/Facial-Attribute-Detection_w8a8.tflite" "${output_model_path}/face_attrib_net_quantized.tflite"
-            download_file "https://huggingface.co/qualcomm/YamNet/resolve/${model_version}/YamNet.tflite" "${output_model_path}/yamnet.tflite"
-            download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/${model_version}/Yolo-X_w8a8.tflite" "${output_model_path}/yolox_quantized.tflite"
-
-            #dlc models
-            download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/${model_version}/Inception-v3_w8a8.dlc" "${output_model_path}/inceptionv3.dlc"
-            download_file "https://huggingface.co/qualcomm/DeepLabV3-ResNet50/resolve/${model_version}/DeepLabV3-ResNet50_w8a8.dlc" "${output_model_path}/deeplabv3_resnet50.dlc"
-            download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/${model_version}/Midas-V2_w8a8.dlc" "${output_model_path}/midasv2.dlc"
-            download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/${model_version}/HRNetPose_w8a8.dlc" "${output_model_path}/hrnet_pose_quantized.dlc"
-            download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/${model_version}/QuickSRNetSmall_w8a8.dlc" "${output_model_path}/quicksrnetsmall_quantized.dlc"
-            download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/${model_version}/Lightweight-Face-Detection_w8a8.dlc" "${output_model_path}/face_det_lite_quantized.dlc"
-            download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/${model_version}/Facial-Landmark-Detection_w8a8.dlc" "${output_model_path}/facemap_3dmm_quantized.dlc"
-            download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/${model_version}/Facial-Attribute-Detection_w8a8.dlc" "${output_model_path}/face_attrib_net_quantized.dlc"
-            download_file "https://huggingface.co/qualcomm/YamNet/resolve/${model_version}/YamNet.dlc" "${output_model_path}/yamnet.dlc"
-            download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/${model_version}/Yolo-X_w8a8.dlc" "${output_model_path}/yolox_quantized.dlc"
+        
+        if [[ ! -v qairt_map[$qairt_version] ]]; then
+            echo "QAIRT version $qairt_version not supported"
+            extract_latest_qairt_version
+            echo "Defaulting to the latest supported QAIRT version available: $qairt_version"
         fi
+
+        model_version=${qairt_map[$qairt_version]}
+
+        output_model_path="/etc/models"
+        output_label_path="/etc/labels"
+        output_data_path="/etc/data"
+        output_media_path="/etc/media"
+
+        create_directory "$output_model_path"
+        create_directory "$output_label_path"
+        create_directory "$output_data_path"
+        create_directory "$output_media_path"
+
+        #tflite models
+        download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/${model_version}/Inception-v3_w8a8.tflite" "${output_model_path}/inception_v3_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/${model_version}/DeepLabV3-Plus-MobileNet_w8a8.tflite" "${output_model_path}/deeplabv3_plus_mobilenet_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/${model_version}/Midas-V2_w8a8.tflite" "${output_model_path}/midas_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/HRNetPose/resolve/${model_version}/HRNetPose_w8a8.tflite" "${output_model_path}/hrnet_pose_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/QuickSRNetSmall/resolve/${model_version}/QuickSRNetSmall_w8a8.tflite" "${output_model_path}/quicksrnetsmall_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/Lightweight-Face-Detection/resolve/${model_version}/Lightweight-Face-Detection_w8a8.tflite" "${output_model_path}/face_det_lite_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/${model_version}/Facial-Landmark-Detection_w8a8.tflite" "${output_model_path}/facemap_3dmm_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/Facial-Attribute-Detection/resolve/${model_version}/Facial-Attribute-Detection_w8a8.tflite" "${output_model_path}/face_attrib_net_quantized.tflite"
+        download_file "https://huggingface.co/qualcomm/YamNet/resolve/4167a3af6245a2b611c9f7918fddefd8b0de52dc/YamNet.tflite" "${output_model_path}/yamnet.tflite"
+        download_file "https://huggingface.co/qualcomm/Yolo-X/resolve/v0.30.5/Yolo-X_w8a8.tflite" "${output_model_path}/yolox_quantized.tflite"
+
+        #dlc models
+        download_file "https://huggingface.co/qualcomm/Inception-v3/resolve/${model_version}/Inception-v3_w8a8.dlc" "${output_model_path}/inceptionv3.dlc"
+        download_file "https://huggingface.co/qualcomm/DeepLabV3-Plus-MobileNet/resolve/${model_version}/DeepLabV3-Plus-MobileNet_w8a8.dlc" "${output_model_path}/deeplabv3_plus_mobilenet.dlc"
+        download_file "https://huggingface.co/qualcomm/Midas-V2/resolve/${model_version}/Midas-V2_w8a8.dlc" "${output_model_path}/midasv2.dlc"
+        
     fi
     
 }
 
 # Extracts the chipset 
 extract_chipset() {
-    chipset=$(cat /sys/devices/soc0/machine)
-    echo "Chipset info: $chipset"
+    local chipset_file="/sys/devices/soc0/machine"
+
+    if [[ -f "$chipset_file" ]]; then
+        chipset=$(cat "$chipset_file")
+        if [[ -n "$chipset" ]]; then
+            echo "Chipset info: $chipset"
+        else
+            echo "Chipset info file exists but is empty"
+        fi
+    else
+        echo "Chipset info file not found"
+    fi
 }
+
 
 main() {
 
@@ -301,15 +318,16 @@ main() {
     done
 
 
-    check_internet
-
+    #check_internet
+    
     if ! check_qairt_version; then
         echo "No QAIRT runtime found"
-        echo "Ensure that the neccessary qairt bins/libs are present in the device"
-        exit 1
+        extract_latest_qairt_version
+        echo "Defaulting to the latest supported QAIRT version available: $qairt_version"
     fi
 
     if ! check_build_type; then
+        echo "Build type not supported"
         exit 1
     fi
 
