@@ -6,8 +6,7 @@
 
 #include <string>
 
-#include "GenieCommon.h"
-#include "GenieDialog.h"
+#include "Genie.hpp"
 
 namespace App
 {
@@ -16,9 +15,9 @@ constexpr const std::string_view c_exit_prompt = "exit";
 class ChatApp
 {
   private:
-    GenieDialogConfig_Handle_t m_config_handle = nullptr;
-    GenieDialog_Handle_t m_dialog_handle = nullptr;
+    std::string config_;
     std::string m_user_name;
+    Genie genie_; 
 
   public:
     /**

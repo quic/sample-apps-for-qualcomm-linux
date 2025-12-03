@@ -16,11 +16,11 @@ set(APP "llamachat")
 set(CMAKE_CXX_STANDARD 17)
 
 # Add the executable
-add_executable(${APP} Main.cpp PromptHandler.cpp ChatApp.cpp)
+add_executable(${APP} Main.cpp PromptHandler.cpp ChatApp.cpp Genie.cpp Logger.cpp)
 
 # Set chipset and QNN paths
 set(CHIPSET "QCS9075")
-set(QNN_ROOT "/app/Text-Generation/src/qairt/2.38.0.250901/")
+set(QNN_ROOT "/app/Text-Generation/src/qairt/2.40.0.251030/")
 set(QNN_INCLUDE_DIR "${QNN_ROOT}/include/Genie")
 set(QNN_LIB_PREFIX "${QNN_ROOT}/lib")
 set(_dtuple_POSTFIX "oe-linux-gcc11.2")

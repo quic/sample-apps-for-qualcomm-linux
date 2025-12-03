@@ -14,8 +14,11 @@ using namespace AppUtils;
 // Llama3 prompt
 // Ref: https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-3/
 constexpr const std::string_view c_begin_system =
-    "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYour name is Qbot and you are a helpful AI "
-    "assistant. Please keep answers concise and to the point. <|eot_id|>\n\n";
+    "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n";
+
+constexpr std::string_view system_prompt =
+    "Your name is Qbot and you are a helpful AI assistant. Please keep answers concise and to the point. <|eot_id|>\n\n";
+
 constexpr const std::string_view c_begin_user = "<|start_header_id|>user<|end_header_id|>\n\n";
 constexpr const std::string_view c_end_user = "<|eot_id|>";
 constexpr const std::string_view c_begin_assistant = "<|start_header_id|>assistant<|end_header_id|>\n\n";
@@ -53,9 +56,10 @@ std::string PromptHandler::GetPromptWithTag(const std::string& user_prompt)
     if (m_is_first_prompt)
     {
         m_is_first_prompt = false;
-        return std::string(c_begin_system) + c_begin_user.data() + user_prompt.data() + c_end_user.data() +
+        return std::string(c_begin_system)+system_prompt.data()+ c_begin_user.data() + user_prompt.data() + c_end_user.data() +
                c_begin_assistant.data();
     }
     return std::string(c_end_assistant) + c_begin_user.data() + user_prompt.data() + c_end_user.data() +
            c_begin_assistant.data();
 }
+
