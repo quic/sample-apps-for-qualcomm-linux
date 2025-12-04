@@ -40,7 +40,7 @@ copy_videos() {
     local media_file=$2
 
     # echo "Copying ${media_file}"
-    for i in $(seq -w 2 16); do
+    for i in $(seq 2 16); do
         cp "${output_media_dir}/${media_file}" "${output_media_dir}/video${i}.mp4"
     done
 }
@@ -134,7 +134,8 @@ download_labels() {
     echo "$url"
     curl -L -O "$url" && unzip -o "$(basename "$url")" && \
     cp "$(basename "$url" .zip)"/* $output_dir
-    cp "$(basename "$url" .zip)"/yolonas.labels "$(basename "$url" .zip)"/yolov8.labels
+    cp "$(basename "$url" .zip)"/yolonas.labels $output_dir/yolov8.labels
+    cp "$(basename "$url" .zip)"/yolox.json $output_dir/yolonas.json
     rm -rf "$(basename "$url" .zip)"
     rm -rf "$(basename "$url")"
 }
@@ -347,6 +348,13 @@ main() {
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video1.mp4" "${output_media_path}/video1.mp4"
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video-flac.mp4" "${output_media_path}/video-flac.mp4"
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video-mp3.mp4" "${output_media_path}/video-mp3.mp4"
+
+    if [ "$build_type" = "Ubuntu" ]; then
+        download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/qdemo/Qdemo.gif" "${output_media_path}/Qdemo.gif"
+        download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/qdemo/Qdemo.png" "${output_media_path}/Qdemo.png"
+        download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/scripts/download_artifacts.sh" "${output_media_path}/download_artifacts.sh" 
+        chown -R ubuntu:ubuntu /etc/media/ /etc/labels/ /etc/models/ /etc/data/
+    fi
 
     # Creates copies of the video1.mp4 file 
     copy_videos ${output_media_path} video1.mp4
