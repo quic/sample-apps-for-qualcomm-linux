@@ -350,6 +350,7 @@ main() {
     download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/videos/video-mp3.mp4" "${output_media_path}/video-mp3.mp4"
 
     if [ "$build_type" = "Ubuntu" ]; then
+        sudo apt install unzip
         download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/qdemo/Qdemo.gif" "${output_media_path}/Qdemo.gif"
         download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/qdemo/Qdemo.png" "${output_media_path}/Qdemo.png"
         download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/scripts/download_artifacts.sh" "${output_media_path}/download_artifacts.sh" 
