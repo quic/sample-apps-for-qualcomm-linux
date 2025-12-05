@@ -351,10 +351,10 @@ main() {
 
     if [ "$build_type" = "Ubuntu" ]; then
         sudo apt install unzip
+        chown -R ubuntu:ubuntu /etc/media/ /etc/labels/ /etc/models/ /etc/data/
         download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/qdemo/Qdemo.gif" "${output_media_path}/Qdemo.gif"
         download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/qdemo/Qdemo.png" "${output_media_path}/Qdemo.png"
         download_file "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/scripts/download_artifacts.sh" "${output_media_path}/download_artifacts.sh" 
-        chown -R ubuntu:ubuntu /etc/media/ /etc/labels/ /etc/models/ /etc/data/
     fi
 
     # Creates copies of the video1.mp4 file 
