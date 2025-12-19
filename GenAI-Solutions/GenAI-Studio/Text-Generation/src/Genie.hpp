@@ -11,6 +11,7 @@
 
 #include "GenieCommon.h"
 #include "GenieDialog.h"
+#include "GenieSampler.h"
 
 class Genie {
 public:
@@ -28,6 +29,7 @@ public:
     uint32_t maxTokens() const noexcept { return max_tokens_; }
     bool isReady() const noexcept;
 
+    void applySamplerConfig(const std::string& samplerBlock);
     // Inference
     std::string query(const std::string& prompt,
                       GenieDialog_SentenceCode_t sentence_code =

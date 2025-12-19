@@ -16,8 +16,7 @@ using namespace AppUtils;
 constexpr const std::string_view c_begin_system =
     "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n";
 
-constexpr std::string_view system_prompt =
-    "Your name is Qbot and you are a helpful AI assistant. Please keep answers concise and to the point. <|eot_id|>\n\n";
+constexpr std::string_view c_end_system_prompt=" <|eot_id|>\n\n";
 
 constexpr const std::string_view c_begin_user = "<|start_header_id|>user<|end_header_id|>\n\n";
 constexpr const std::string_view c_end_user = "<|eot_id|>";
@@ -51,12 +50,17 @@ PromptHandler::PromptHandler()
 {
 }
 
+void PromptHandler::SetSystemPrompt(std::string system_prompt) {
+    m_system_prompt = std::move(system_prompt);
+    m_is_first_prompt = true; 
+}
+
 std::string PromptHandler::GetPromptWithTag(const std::string& user_prompt)
 {
     if (m_is_first_prompt)
     {
         m_is_first_prompt = false;
-        return std::string(c_begin_system)+system_prompt.data()+ c_begin_user.data() + user_prompt.data() + c_end_user.data() +
+        return std::string(c_begin_system)+m_system_prompt.data()+c_end_system_prompt.data()+ c_begin_user.data() + user_prompt.data() + c_end_user.data() +
                c_begin_assistant.data();
     }
     return std::string(c_end_assistant) + c_begin_user.data() + user_prompt.data() + c_end_user.data() +

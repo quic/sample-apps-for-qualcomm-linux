@@ -18,6 +18,8 @@ class ChatApp
     std::string config_;
     std::string m_user_name;
     Genie genie_; 
+    
+    
 
   public:
     /**
