@@ -1,4 +1,3 @@
-
 // ---------------------------------------------------------------------
 // Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
 // SPDX-License-Identifier: BSD-3-Clause
@@ -57,6 +56,44 @@ void Genie::_initializeUnlocked() {
         _cleanupUnlocked();
         throw std::runtime_error("GenieDialog_setMaxNumTokens failed.");
     }
+}
+
+
+void Genie::applySamplerConfig(const std::string& samplerBlock) {
+
+    
+    Genie_Status_t status;
+    
+    GenieSampler_Handle_t samplerHandle = nullptr;
+    status = GenieDialog_getSampler(dlg_, &samplerHandle);
+    
+    if (status != GENIE_STATUS_SUCCESS || !samplerHandle) {
+        throw std::runtime_error("Failed to get Genie sampler handle");
+    }
+
+    // 2) Create sampler config handle from *full* sampler JSON
+    GenieSamplerConfig_Handle_t samplerConfigHandle = nullptr;
+    status = GenieSamplerConfig_createFromJson(samplerBlock.c_str(),
+                                               &samplerConfigHandle);
+    
+    if (status != GENIE_STATUS_SUCCESS || !samplerConfigHandle) {
+        throw std::runtime_error("Failed to create sampler config handle");
+    }
+    // Updating with new sampler block
+    status = GenieSamplerConfig_setParam(samplerConfigHandle, "", samplerBlock.c_str());
+    if (status != GENIE_STATUS_SUCCESS) {
+        throw std::runtime_error("Failed to set top-p");
+    }
+    // 4) Apply the sampler config to the sampler
+    status = GenieSampler_applyConfig(samplerHandle, samplerConfigHandle);
+    if (status != GENIE_STATUS_SUCCESS) {
+        throw std::runtime_error("Failed to apply sampler config");
+    }
+
+    // 5) (optional) free the config when done
+    // GenieSamplerConfig_free(samplerConfigHandle);
+
+    
 }
 
 // ----------------------

@@ -9,7 +9,7 @@ FROM --platform=arm64 ubuntu:24.04
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y \
-        cmake make gcc g++ wget unzip git && \
+        cmake make gcc g++ wget unzip git nlohmann-json3-dev && \
     apt-get install -y software-properties-common && \
     apt-add-repository -s ppa:ubuntu-qcom-iot/qcom-ppa && \
     apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-dspservices-headers-dev && \
