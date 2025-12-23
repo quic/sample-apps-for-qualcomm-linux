@@ -380,6 +380,23 @@
           "LabelDownloadURL": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/artifacts/json_labels/facemap_3dmm_settings.json"
         }
       ],
+      "binaries": [
+        {
+          "fileName": "blendShape.bin",
+          "fileUrl": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/data/blendShape.bin",
+          "fileLocation": "/etc/data/"
+        },
+        {
+          "fileName": "meanFace.bin",
+          "fileUrl": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/data/meanFace.bin",
+          "fileLocation": "/etc/data/"
+        },
+        {
+          "fileName": "shapeBasis.bin",
+          "fileUrl": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/data/shapeBasis.bin",
+          "fileLocation": "/etc/data/"
+        }
+      ],
       "ApplicationTextDescription": "This application demonstrates face recognition on the live video input from a camera or an RTSP stream."
     },
     {
