@@ -1,7 +1,7 @@
 {
   "Version": "1.0.0",
   "QliVersion": "1.5",
-  "DevKitName": "qcs9075-iq-9075-evk",
+  "DevKitName": "RB3G2",
   "Locations": {
 	"AIModelLocation": "/etc/models/",
 	"AILabelLocation": "/etc/labels/",
