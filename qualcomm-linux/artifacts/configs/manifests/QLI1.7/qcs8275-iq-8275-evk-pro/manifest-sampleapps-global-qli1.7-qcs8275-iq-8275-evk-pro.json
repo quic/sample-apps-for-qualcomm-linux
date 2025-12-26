@@ -1,7 +1,7 @@
 {
     "version": "1.1",
     "qliVersion": "1.7",
-    "devKitName": "qcs9075-iq-9075-evk",
+    "devKitName": "qcs8275-iq-8275-evk-pro",
     "locations": {
         "aiModelLocation": "/etc/models",
         "aiLabelLocation": "/etc/labels",

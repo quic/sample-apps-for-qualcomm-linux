@@ -1,7 +1,7 @@
 {
     "version": "1.1",
     "qliVersion": "1.7",
-    "devKitName": "qcs8275-iq-8275-evk",
+    "devKitName": "qcs9075-iq-9075-evk",
     "locations": {
         "aiModelLocation": "/etc/models",
         "aiLabelLocation": "/etc/labels",
@@ -630,6 +630,23 @@
                     "modelDownloadUrl": "https://huggingface.co/qualcomm/Facial-Landmark-Detection/resolve/2353f012b24fd407902e38d0c5fdd591cd2b1380/Facial-Landmark-Detection_w8a8.tflite",
                     "modelName": "facemap_3dmm_quantized.tflite"
                 }
+            ],
+		    "additionalFiles": [
+                {
+                  "fileName": "blendShape.bin",
+                  "fileUrl": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/data/blendShape.bin",
+                  "fileLocation": "/etc/data/"
+                },
+                {
+                  "fileName": "meanFace.bin",
+                  "fileUrl": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/data/meanFace.bin",
+                  "fileLocation": "/etc/data/"
+                },
+                {
+                  "fileName": "shapeBasis.bin",
+                  "fileUrl": "https://raw.githubusercontent.com/quic/sample-apps-for-qualcomm-linux/refs/heads/main/qualcomm-linux/artifacts/data/shapeBasis.bin",
+                  "fileLocation": "/etc/data/"
+                },
             ],
             "applicationName": "gst-ai-face-recognition",
             "applicationTextDescription": "This application demonstrates face recognition on the live video input from a camera or an RTSP stream.",
