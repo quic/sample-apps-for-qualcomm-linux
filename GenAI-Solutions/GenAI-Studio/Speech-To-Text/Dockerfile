@@ -25,9 +25,9 @@ COPY whisper_base_en.py /app/Speech-To-Text/ai-engine-direct-helper/samples/pyth
 COPY utils.patch requirements.txt /app/Speech-To-Text/ai-engine-direct-helper/
 WORKDIR /app/Speech-To-Text/ai-engine-direct-helper
 RUN git apply utils.patch
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh && \
-    bash Miniconda3-latest-Linux-aarch64.sh -b && \
-    rm Miniconda3-latest-Linux-aarch64.sh
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.7.0-2-Linux-aarch64.sh && \
+    bash Miniconda3-py312_25.7.0-2-Linux-aarch64.sh -b && \
+    rm Miniconda3-py312_25.7.0-2-Linux-aarch64.sh
 RUN . ~/miniconda3/bin/activate && \
     conda tos accept && \
     conda create -n py312 python=3.12 && \

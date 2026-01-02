@@ -9,6 +9,6 @@ pybind11==2.13.6
 requests==2.32.4
 tqdm==4.67.1
 scikit-image==0.25.2
-samplerate==0.2.1
+samplerate
 torch==2.4.1
 audio2numpy==0.1.2
