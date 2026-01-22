@@ -28,7 +28,7 @@ DELEGATE_PATH = "libQnnTFLiteDelegate.so"
 
 FRAME_W, FRAME_H = 1600, 900
 FPS_OUT = 30
-CONF_THRES = 0.25
+CONF_THRES = 0.60
 NMS_IOU_THRES = 0.50
 BOX_SCALE = 3.2108588218688965
 BOX_ZP = 31.0
@@ -142,5 +142,6 @@ else:
     appsrc.emit('end-of-stream')
     pipeline.set_state(Gst.State.NULL)
     print("Done – video streamed to Wayland sink")
+
 
 
