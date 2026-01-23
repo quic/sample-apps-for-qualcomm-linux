@@ -6,7 +6,7 @@ import sys
 import os
 import numpy as np
 
-def letterbox(im, new_shape=(640, 640), color=(114, 114, 114), auto=True, scale_fill=False, scale_up=True, stride=32):
+def letterbox(im, new_shape=(320, 320), color=(114, 114, 114), auto=True, scale_fill=False, scale_up=True, stride=32):
     """
     Resize and pad image while meeting stride-multiple constraints.
     """
@@ -81,7 +81,7 @@ def main():
             image = cv2.imread(input_path)
             
             # Keep aspect ratio and resize
-            img = letterbox(image, 640, stride=32, auto=False)
+            img = letterbox(image, 320, stride=32, auto=False)
 
             # BGR -> RGB
             img = img[:, :, ::-1]
@@ -100,3 +100,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
