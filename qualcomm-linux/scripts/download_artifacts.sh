@@ -107,6 +107,7 @@ split_qairt_version() {
 # Mapping of the QAIRT Version and its supported Model Version on AI HUB
 declare -A qairt_map=(
     ["2.39.0.250925"]="v0.40.0"
+    ["2.41.0.251128"]="v0.44.0"
 )
 
 # Extracts the latest QAIRT version that is available
@@ -362,4 +363,3 @@ main() {
 }
 
 main "$@"
- 
