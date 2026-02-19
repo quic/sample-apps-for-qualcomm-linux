@@ -107,14 +107,40 @@ split_qairt_version() {
 # Mapping of the QAIRT Version and its supported Model Version on AI HUB
 declare -A qairt_map=(
     ["2.39.0.250925"]="v0.40.0"
+    ["2.40.0.251030"]="v0.42.0"
     ["2.41.0.251128"]="v0.44.0"
 )
 
-# Extracts the latest QAIRT version that is available
-extract_latest_qairt_version() {
-    qairt_version=$(printf "%s\n" "${!qairt_map[@]}" | sort -V | tail -n 1)
-    split_qairt_version $qairt_version
-    qairt_short_version="${major}.${minor}"
+# Checks if the QAIRT version is lesser than or equal to the device QAIRT version
+version_le() {
+    local v1=$1 v2=$2
+    if [[ $(printf "%s\n%s\n" "$v1" "$v2" | sort -V | head -n1) == "$v1" ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Selects the nearest (lesser than/equal to) version to the device QAIRT version
+select_supported_qairt_version() {
+    local device_qairt="$1"
+    local best=""
+    local key
+    for key in "${!qairt_map[@]}"; do
+        if version_le "$key" "$device_qairt"; then
+            if [[ -z "$best" ]] || version_le "$best" "$key"; then
+                best="$key"
+            fi
+        fi
+    done
+
+    if [[ -z "$best" ]]; then
+        best=$(printf "%s\n" "${!qairt_map[@]}" | sort -V | head -n1)
+        echo "Device QAIRT ($device_qairt) is older than the oldest supported; defaulting to $best"
+    fi
+
+    selected_qairt_version="$best"
+    model_version="${qairt_map[$best]}"
 }
 
 # Fetches a zip file from the given URL, extracts its contents (model files) into the specified directory, and deletes the downloaded archive and temporary folder.
@@ -250,11 +276,10 @@ download_model_artifacts() {
         fi
 
     else
-        
         if [[ ! -v qairt_map[$qairt_version] ]]; then
-            echo "QAIRT version $qairt_version not supported"
-            extract_latest_qairt_version
-            echo "Defaulting to the latest supported QAIRT version available: $qairt_version"
+            select_supported_qairt_version "$qairt_version"
+            echo "Device QAIRT version detected: $qairt_version"
+            echo "QAIRT version $qairt_version is not supported. Defaulting to the nearest supported version: $selected_qairt_version"
         fi
 
         model_version=${qairt_map[$qairt_version]}
