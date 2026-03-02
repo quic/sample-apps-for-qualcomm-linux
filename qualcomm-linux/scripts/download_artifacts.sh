@@ -280,6 +280,7 @@ download_model_artifacts() {
             select_supported_qairt_version "$qairt_version"
             echo "Device QAIRT version detected: $qairt_version"
             echo "QAIRT version $qairt_version is not supported. Defaulting to the nearest supported version: $selected_qairt_version"
+            qairt_version="$selected_qairt_version"
         fi
 
         model_version=${qairt_map[$qairt_version]}
