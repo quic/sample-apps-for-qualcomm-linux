@@ -107,7 +107,7 @@ bash generate_cdi_json.sh
 ```
 ls /etc/cdi/docker-run-cdi-hw-acc.json
 ```
-#### Replace "/etc/cdi/docker-run-cdi-hw-acc.json" with [docker-run-cdi-hw-acc.json](docker-run-cdi-hw-acc.json) from this folder
+#### Replace "/etc/cdi/docker-run-cdi-hw-acc.json" with [docker-run-cdi-hw-acc.json](cdi-iq9/docker-run-cdi-hw-acc.json) from this folder for IQ9 and [docker-run-cdi-hw-acc.json](cdi-iq8/docker-run-cdi-hw-acc.json)
 
 > Modify permissions of /opt/ folder to access artifacts
 ```
@@ -121,6 +121,24 @@ snpe-platform-validator --runtime dsp
 #### Expected output
 ![DSP_Runtime](./assets/dsp_runtime.png)
 > "DSP Passed" from above log ensures DSP runtime is supported on device
+
+**NOTE:**
+For IQ8 please sideload QAIRT 2.44:
+
+Download the SDK
+```
+wget https://softwarecenter.qualcomm.com/api/download/software/sdks/Qualcomm_AI_Runtime_Community/All/2.44.0.260225/v2.44.0.260225.zip && unzip v2.44.0.260225.zip
+```
+Push the files to their respective folders
+```
+cp qairt/2.44.0.260225/lib/hexagon-v75/unsigned/* /usr/lib/rfsa/adsp/ && \
+cp qairt/2.44.0.260225/lib/aarch64-oe-linux-gcc11.2/* /usr/lib/ && \
+cp qairt/2.44.0.260225/bin/aarch64-oe-linux-gcc11.2/* /usr/bin/
+```
+>Re-run snpe-platform-validator to check if it was successful
+```
+snpe-platform-validator --runtime dsp
+```
 
 #### Docker Installation
 ##### Follow below steps to install Docker and dependencies
@@ -189,6 +207,7 @@ git clone https://github.com/quic/sample-apps-for-qualcomm-linux.git
 cd sample-apps-for-qualcomm-linux/GenAI-Solutions/GenAI-Studio
 ```
 ##### NOTE: Generating container image depends on network connection and can take more than 30 minutes each
+##### NOTE: Use dsp-architecture = v73 for IQ9 and v75 for IQ8
 > Speech-To-Text
 ```
 cd Speech-To-Text
@@ -199,14 +218,14 @@ cd ..
 > Text-Generation
 ```
 cd Text-Generation
-docker  build --progress=plain -t text2text . 
+docker  build --progress=plain --build-arg DSP_ARCH=<dsp-architecture> -t text2text . 
 docker save text2text -o text2text
 cd ..
 ```
 > Text-To-Speech
 ```
 cd Text-To-Speech/meloTTS/
-docker  build --progress=plain -t text2speech . 
+docker  build --progress=plain --build-arg DSP_ARCH=<dsp-architecture> -t text2speech . 
 docker save text2speech -o text2speech
 cd ..
 ```
@@ -214,7 +233,7 @@ cd ..
 
 ```
 cd Image-Generation
-docker  build --progress=plain -t text2image . 
+docker  build --progress=plain --build-arg DSP_ARCH=<dsp-architecture> -t text2image . 
 docker save text2image -o text2image
 cd ..
 ```
@@ -257,6 +276,7 @@ git clone https://github.com/quic/sample-apps-for-qualcomm-linux.git
 cd sample-apps-for-qualcomm-linux/GenAI-Solutions/GenAI-Studio
 ```
 ##### NOTE: Generating container image depends on network connection and can take more than 30 minutes each
+##### NOTE: Use dsp-architecture = v73 for IQ9 and dsp-architecture v75 for IQ8
 > Speech-To-Text
 ```
 cd Speech-To-Text
@@ -267,14 +287,14 @@ cd ..
 > Text-Generation
 ```
 cd Text-Generation
-docker  build --progress=plain --platform=linux/arm64/v8  -t text2text .
+docker  build --progress=plain --platform=linux/arm64/v8 --build-arg DSP_ARCH=<dsp-architecture> -t text2text .
 docker save text2text -o text2text
 cd ..
 ```
 > Text-To-Speech
 ```
 cd Text-To-Speech/meloTTS/
-docker  build --progress=plain --platform=linux/arm64/v8  -t text2speech .
+docker  build --progress=plain --platform=linux/arm64/v8  --build-arg DSP_ARCH=<dsp-architecture> -t text2speech .
 docker save text2speech -o text2speech
 cd ..
 ```
@@ -282,7 +302,7 @@ cd ..
 
 ```
 cd Image-Generation
-docker  build --progress=plain --platform=linux/arm64/v8  -t text2image .
+docker  build --progress=plain --platform=linux/arm64/v8  --build-arg DSP_ARCH=<dsp-architecture> -t text2image .
 docker save text2image -o text2image
 cd ..
 ```
@@ -332,7 +352,11 @@ Follow https://github.com/quic/ai-hub-apps/tree/main/tutorials/llm_on_genie
 
 > Export model
 ```
+#For IQ9
 python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir genie_bundle
+
+#For IQ8
+python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-8gen3 --skip-inferencing --skip-profiling --output-dir genie_bundle
 ```
 ##### NOTE: The export command may take 2–3 hours and requires significant memory (RAM + swap) on the host.
 > Push models folder genie_bundle to "/opt/" on target device
@@ -351,11 +375,11 @@ scp -r genie_bundle root@<target-ip-address>:/opt/
 > Qualcomm Linux Default password: oelinux123
 
 #### Text To Speech
-As TTS models are not distributed, Please install  https://qpm.qualcomm.com/#/main/tools/details/VoiceAI_TTS and follow "VoiceAI_TTS/1.0.1.0/notebook/melo/npu/README.md" to generate models
+As TTS models are not distributed for IQ8, Please install  https://qpm.qualcomm.com/#/main/tools/details/VoiceAI_TTS and follow "VoiceAI_TTS/1.0.1.0/notebook/melo/npu/README.md" to generate models
 
 **NOTE:** 
-* Use QAIRT 2.38 version
-* Use v73 dsp arch for IQ9
+* Use QAIRT 2.38 version for IQ9 and 2.44 for IQ8
+* Use v73 dsp arch for IQ9 and v75 dsp arch for IQ8
 > Add below commands in **Melo-Notebook.ipynb** Jupyter notebook to generate qnn_ctx onnx models
 ```
 wget https://raw.githubusercontent.com/microsoft/onnxruntime/main/onnxruntime/python/tools/qnn/gen_qnn_ctx_onnx_model.py
@@ -371,6 +395,14 @@ for file_name in os.listdir(output_path):
     
     !python gen_qnn_ctx_onnx_model.py -b {os.path.join(output_path,file_name)} -q {os.path.join(intermediates_path,net_json_file)}
 ```
+You can also download the models directly from [aihub](https://aihub.qualcomm.com/models/melotts_en?searchTerm=melo).
+#### NOTE: download the models for onnx runtime and rename your onnx files to:
+```
+bert_net_qnn_ctx.onnx  
+decoder_net_qnn_ctx.onnx  
+encoder_net_qnn_ctx.onnx  
+flow_net_qnn_ctx.onnx
+```
 > Push models to "/opt/TTS_models/" on target device
 
 > For Qualcomm Ubuntu
@@ -381,6 +413,23 @@ scp -r TTS_models ubuntu@<target-ip-address>:/opt/
 > For Qualcomm Linux
 ```
 scp -r TTS_models root@<target-ip-address>:/opt/
+```
+> Default password: oelinux123
+
+#### Image-Generation
+Download the Text-encoder, Unet, Vae models for QCS8275 from [aihub](https://aihub.qualcomm.com/models/stable_diffusion_v1_5?searchTerm=stab&chipsets=qualcomm-snapdragon-8gen3%2Cqualcomm-sa7255p). (We currently pull the models directly from aihub for IQ9.)
+#### NOTE: Download the models for Qualcomm AI runtime.
+
+>Push models to "/opt/text2img/" on target device
+
+> For Qualcomm Ubuntu
+```
+scp -r text2img ubuntu@<target-ip-address>:/opt/
+```
+
+> For Qualcomm Linux
+```
+scp -r text2img root@<target-ip-address>:/opt/
 ```
 > Default password: oelinux123
 
