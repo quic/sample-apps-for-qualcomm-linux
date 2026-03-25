@@ -95,7 +95,7 @@ sudo apt install -y qcom-fastrpc1 qcom-libdmabufheap-dev qcom-fastrpc-dev qcom-d
 
 Learn more about [QNN](https://docs.qualcomm.com/bundle/publicresource/topics/80-63442-10/index_QNN.html) and [SNPE](https://docs.qualcomm.com/bundle/publicresource/topics/80-63442-10/index_SNPE.html)
 #### CDI setup
-> CDI stands for Container Device Interface. provides a interface that allows containers to access Qualcomm DSP or GPU resources 
+> CDI stands for Container Device Interface. provides an interface that allows containers to access Qualcomm DSP or GPU resources 
 ```
 curl -L -O https://git.codelinaro.org/clo/le/sdk-tools/-/raw/imsdk-tools.lnx.1.0.r1-rel/qimsdk-ubuntu/scripts/generate_cdi_json.sh?ref_type=heads&inline=false
 ```
@@ -351,28 +351,60 @@ Follow [Generate Models](#generate-models) for next steps
 Follow https://github.com/quic/ai-hub-apps/tree/main/tutorials/llm_on_genie
 
 > Export model
+#### Llama v3
 ```
 #For IQ9
-python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir genie_bundle
+python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir llama_bundle
 
 #For IQ8
-python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-8gen3 --skip-inferencing --skip-profiling --output-dir genie_bundle
+python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-8gen3 --skip-inferencing --skip-profiling --output-dir llama_bundle
 ```
-##### NOTE: The export command may take 2–3 hours and requires significant memory (RAM + swap) on the host.
-> Push models folder genie_bundle to "/opt/" on target device
+#### Qwen 2.5
+```
+#For IQ9
+python -m qai_hub_models.models.qwen2_5_7b_instruct.export --chipset qualcomm-qcs9075 --skip-inferencing --skip-profiling --output-dir qwen_bundle
+
+#For IQ8
+python -m qai_hub_models.models.qwen2_5_7b_instruct.export --chipset qualcomm-qcs8275-proxy --skip-inferencing --skip-profiling --output-dir qwen_bundle
+```
+##### NOTE: The export command may take 2–3 hours and requires significant memory (RAM + swap) on the host. 
+> Push models folders llama_bundle and qwen_bundle to "/opt/" on target device
 
 Follow [Setup](https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-254/how_to.html?vproduct=1601111740013072&version=1.5#setup) to get IP address
 
 > For Qualcomm Ubuntu
 ```
-scp -r genie_bundle ubuntu@<target-ip-address>:/opt/
+scp -r llama_bundle ubuntu@<target-ip-address>:/opt/
+scp -r qwen_bundle ubuntu@<target-ip-address>:/opt/
 ```
 
 > For Qualcomm Linux
 ```
-scp -r genie_bundle root@<target-ip-address>:/opt/
+scp -r llama_bundle root@<target-ip-address>:/opt/
+scp -r qwen_bundle root@<target-ip-address>:/opt/
 ```
 > Qualcomm Linux Default password: oelinux123
+#### NOTE: For qwen, if your qwen bundle does not include genie_config.json, htp_backend_ext_config.json or tokenizer.json. Please run the script [generate-config-for-qwen2_5.sh](Text-Generation\generate-config-for-qwen2_5.sh) in your /opt/qwen_bundle folder on the target device.
+>For Qualcomm Ubuntu
+##### On the target device
+```
+cd sample-apps-for-qualcomm-linux/GenAI-Solutions/GenAI-Studio/Text-Generation/
+cp generate-config-for-qwen2_5.sh /opt/qwen_bundle
+cd /opt/qwen_bundle
+bash generate-config-for-qwen2_5.sh
+```
+>For Qualcomm Linux
+##### On the host machine
+```
+cd sample-apps-for-qualcomm-linux/GenAI-Solutions/GenAI-Studio/Text-Generation/
+scp generate-config-for-qwen2_5 root@<target-ip-address>:/opt/qwen_bundle
+```
+> Qualcomm Linux Default password: oelinux123
+##### On the target device
+```
+cd /opt/qwen_bundle
+bash generate-config-for-qwen2_5.sh
+```
 
 #### Text To Speech
 As TTS models are not distributed for IQ8, Please install  https://qpm.qualcomm.com/#/main/tools/details/VoiceAI_TTS and follow "VoiceAI_TTS/1.0.1.0/notebook/melo/npu/README.md" to generate models
@@ -460,7 +492,7 @@ docker-compose -f docker-compose.yml up -d
 },
 ```
 
-If there are any other errors use "**[docker-run-cdi-hw-acc.json](docker-run-cdi-hw-acc.json)**" 
+If there are any other errors use the "docker-run-cdi-hw-acc.json" suitable for your target device. 
 
 > Network URL
 ```

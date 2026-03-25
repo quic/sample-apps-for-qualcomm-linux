@@ -7,10 +7,10 @@
 #==============================================================================
 
 cmake_minimum_required(VERSION 3.18.2)
-project(llamachat)
+project(chat_app)
 
 # Application name
-set(APP "llamachat")
+set(APP "chat_app")
 
 # C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -37,7 +37,7 @@ set(CROW_SDK_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/crow)
 set(ASIO_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/asio/asio)
 
 # QNN SDK paths
-set(CHIPSET "QCS9075")
+set(CHIPSET "QCS8275")
 set(QNN_ROOT "/app/Text-Generation/src/qairt/2.42.0.251225")
 set(QNN_INCLUDE_DIR "${QNN_ROOT}/include/Genie")
 set(QNN_LIB_PREFIX "${QNN_ROOT}/lib")
