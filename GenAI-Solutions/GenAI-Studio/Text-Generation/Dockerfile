@@ -1,4 +1,4 @@
-# ---------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause
 # ---------------------------------------------------------------------
@@ -8,7 +8,7 @@ FROM --platform=arm64 ubuntu:24.04
 
 # Define the Build Argument (defaulting to v73)
 ARG DSP_ARCH=v73
-
+ARG QAIRT_VER=2.42.0.251225
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y \
@@ -22,7 +22,7 @@ RUN apt-get update && \
 WORKDIR /app/Text-Generation/
 
 # Copy source files
-COPY src-${DSP_ARCH}/ ./src/
+COPY src/ ./src/
 
 # Move into source directory
 WORKDIR /app/Text-Generation/src/
@@ -32,17 +32,15 @@ RUN wget https://github.com/CrowCpp/Crow/releases/download/v1.2.1.2/Crow-1.2.1-L
     git clone https://github.com/chriskohlhoff/asio.git && \
     # Logic to set QAIRT Version and Folder based on DSP_ARCH
     if [ "$DSP_ARCH" = "v75" ]; then \
-        QAIRT_VER="2.42.0.251225"; \
         HEX_FOLDER="hexagon-v75"; \
     else \
-        QAIRT_VER="2.40.0.251030"; \
         HEX_FOLDER="hexagon-v73"; \
     fi && \
-    echo "Building for $DSP_ARCH using QAIRT $QAIRT_VER" && \
+    echo "Building for $DSP_ARCH" && \
     wget https://softwarecenter.qualcomm.com/api/download/software/sdks/Qualcomm_AI_Runtime_Community/All/${QAIRT_VER}/v${QAIRT_VER}.zip && \
-    unzip v${QAIRT_VER}.zip && \
+    unzip v2.42.0.251225.zip && \
     mkdir -p build && cd build && cmake .. && make -j8 && \
-    cp llamachat /usr/bin/ && chmod +x /usr/bin/llamachat && \
+    cp chat_app /usr/bin/ && chmod +x /usr/bin/chat_app && \
     mkdir -p /usr/lib/rfsa/adsp && \
     # Use variables to copy the correct files
     cp /app/Text-Generation/src/qairt/${QAIRT_VER}/lib/${HEX_FOLDER}/unsigned/* /usr/lib/rfsa/adsp/ && \
