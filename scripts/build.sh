@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# Copyright (c) 2026 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #sdk_version="1.0"
@@ -32,6 +32,36 @@ SAMPLE_APPS=(
    # "gst-video-playback-example"
    # "gst-video-transcode-example"
 )
+
+show_help() {
+    echo "Usage: $0 [OPTION]"
+    echo
+    echo "Options:"
+    echo "  -h, --help    Show this help message"
+    echo "  -l, --list    List available sample apps"
+    echo
+    echo "To edit the sample app list:"
+    echo "  - For C sample apps, edit SAMPLE_APPS in this script"
+    echo "  - For Python sample apps, edit gst-plugins-imsdk/gst-python-examples/CMakeLists.txt"
+    echo
+    echo "Available sample apps:"
+    for app in "${SAMPLE_APPS[@]}"; do
+        echo "  - $app"
+    done
+}
+
+case "$1" in
+    -h|--help)
+        show_help
+        exit 0
+        ;;
+    -l|--list)
+        for app in "${SAMPLE_APPS[@]}"; do
+            echo "$app"
+        done
+        exit 0
+        ;;
+esac
 
 function qimsdk-print-setup() {
     echo "============================================================"
