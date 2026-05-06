@@ -4,4 +4,4 @@
 # ---------------------------------------------------------------------
 
 #! /bin/bash
-llamachat --genie-config /opt/genie_bundle/genie_config.json --base-dir /opt/genie_bundle/
+chat_app --bundle_dir /opt/genie_bundle
