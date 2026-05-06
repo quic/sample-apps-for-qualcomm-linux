@@ -208,6 +208,8 @@ cd sample-apps-for-qualcomm-linux/GenAI-Solutions/GenAI-Studio
 ```
 ##### NOTE: Generating container image depends on network connection and can take more than 30 minutes each
 ##### NOTE: Use dsp-architecture = v73 for IQ9 and v75 for IQ8
+##### NOTE: The QAIRT sdk version used can be changed using --build-arg QAIRT_VER=<version> during build for Text-Generation, Image-Generation and Text-to-Speech. 
+###### Please note that only the default versions of QAIRT sdk have been validated.
 > Speech-To-Text
 ```
 cd Speech-To-Text
@@ -277,6 +279,8 @@ cd sample-apps-for-qualcomm-linux/GenAI-Solutions/GenAI-Studio
 ```
 ##### NOTE: Generating container image depends on network connection and can take more than 30 minutes each
 ##### NOTE: Use dsp-architecture = v73 for IQ9 and dsp-architecture v75 for IQ8
+##### NOTE: The QAIRT sdk version used can be changed using --build-arg QAIRT_VER=<version> during build for Text-Generation, Image-Generation and Text-to-Speech. 
+###### Please note that only the default versions of QAIRT sdk have been validated.
 > Speech-To-Text
 ```
 cd Speech-To-Text
@@ -354,37 +358,36 @@ Follow https://github.com/quic/ai-hub-apps/tree/main/tutorials/llm_on_genie
 #### Llama v3
 ```
 #For IQ9
-python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir llama_bundle
+python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-x-elite --skip-inferencing --skip-profiling --output-dir genie_bundle
 
 #For IQ8
-python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-8gen3 --skip-inferencing --skip-profiling --output-dir llama_bundle
+python -m qai_hub_models.models.llama_v3_8b_instruct.export --chipset qualcomm-snapdragon-8gen3 --skip-inferencing --skip-profiling --output-dir genie_bundle
 ```
 #### Qwen 2.5
 ```
 #For IQ9
-python -m qai_hub_models.models.qwen2_5_7b_instruct.export --chipset qualcomm-qcs9075 --skip-inferencing --skip-profiling --output-dir qwen_bundle
+python -m qai_hub_models.models.qwen2_5_7b_instruct.export --chipset qualcomm-qcs9075 --skip-inferencing --skip-profiling --output-dir genie_bundle
 
 #For IQ8
-python -m qai_hub_models.models.qwen2_5_7b_instruct.export --chipset qualcomm-qcs8275-proxy --skip-inferencing --skip-profiling --output-dir qwen_bundle
+python -m qai_hub_models.models.qwen2_5_7b_instruct.export --chipset qualcomm-qcs8275-proxy --skip-inferencing --skip-profiling --output-dir genie_bundle
 ```
 ##### NOTE: The export command may take 2–3 hours and requires significant memory (RAM + swap) on the host. 
-> Push models folders llama_bundle and qwen_bundle to "/opt/" on target device
+
+> Push models folder genie_bundle to "/opt/" on target device
 
 Follow [Setup](https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-254/how_to.html?vproduct=1601111740013072&version=1.5#setup) to get IP address
 
 > For Qualcomm Ubuntu
 ```
-scp -r llama_bundle ubuntu@<target-ip-address>:/opt/
-scp -r qwen_bundle ubuntu@<target-ip-address>:/opt/
+scp -r genie_bundle ubuntu@<target-ip-address>:/opt/
 ```
 
 > For Qualcomm Linux
 ```
-scp -r llama_bundle root@<target-ip-address>:/opt/
-scp -r qwen_bundle root@<target-ip-address>:/opt/
+scp -r genie_bundle root@<target-ip-address>:/opt/
 ```
 > Qualcomm Linux Default password: oelinux123
-#### NOTE: For qwen, if your qwen bundle does not include genie_config.json, htp_backend_ext_config.json or tokenizer.json. Please run the script [generate-config-for-qwen2_5.sh](Text-Generation\generate-config-for-qwen2_5.sh) in your /opt/qwen_bundle folder on the target device.
+#### NOTE: For qwen, if your folder does not include genie_config.json, htp_backend_ext_config.json or tokenizer.json. Please run the script [generate-config-for-qwen2_5.sh](Text-Generation\generate-config-for-qwen2_5.sh) in your /opt/qwen_bundle folder on the target device.
 >For Qualcomm Ubuntu
 ##### On the target device
 ```
@@ -410,7 +413,7 @@ bash generate-config-for-qwen2_5.sh
 As TTS models are not distributed for IQ8, Please install  https://qpm.qualcomm.com/#/main/tools/details/VoiceAI_TTS and follow "VoiceAI_TTS/1.0.1.0/notebook/melo/npu/README.md" to generate models
 
 **NOTE:** 
-* Use QAIRT 2.38 version for IQ9 and 2.44 for IQ8
+* Use QAIRT 2.44
 * Use v73 dsp arch for IQ9 and v75 dsp arch for IQ8
 > Add below commands in **Melo-Notebook.ipynb** Jupyter notebook to generate qnn_ctx onnx models
 ```
@@ -448,22 +451,6 @@ scp -r TTS_models root@<target-ip-address>:/opt/
 ```
 > Default password: oelinux123
 
-#### Image-Generation
-Download the Text-encoder, Unet, Vae models for QCS8275 from [aihub](https://aihub.qualcomm.com/models/stable_diffusion_v1_5?searchTerm=stab&chipsets=qualcomm-snapdragon-8gen3%2Cqualcomm-sa7255p). (We currently pull the models directly from aihub for IQ9.)
-#### NOTE: Download the models for Qualcomm AI runtime.
-
->Push models to "/opt/text2img/" on target device
-
-> For Qualcomm Ubuntu
-```
-scp -r text2img ubuntu@<target-ip-address>:/opt/
-```
-
-> For Qualcomm Linux
-```
-scp -r text2img root@<target-ip-address>:/opt/
-```
-> Default password: oelinux123
 
 Follow [Run applications](#run-applications) for next steps
 

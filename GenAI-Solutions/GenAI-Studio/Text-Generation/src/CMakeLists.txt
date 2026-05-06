@@ -19,7 +19,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Source files
 add_executable(${APP}
     Main.cpp
-    PromptHandler.cpp
     ChatApp.cpp
     Genie.cpp
     Logger.cpp

@@ -7,9 +7,10 @@ FROM --platform=arm64 ubuntu:24.04
 
 # Define the Build Argument (v73 for IQ9, v75 for IQ8)
 ARG DSP_ARCH=v73
-
+ARG QAIRT_VER=2.44.0.260225
 # Persist DSP_ARCH as ENV so it's available at runtime
 ENV DSP_ARCH=${DSP_ARCH}
+ENV QAIRT_VER=${QAIRT_VER}
 
 # Update the package list and install base dependencies
 RUN apt-get update && \
@@ -33,21 +34,11 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh 
 # Main build logic using conditional variables based on DSP_ARCH
 ARG DSP_ARCH
 RUN if [ "$DSP_ARCH" = "v75" ]; then \
-        QAIRT_VER="2.44.0.260225"; \
         HEX_FOLDER="hexagon-v75"; \
-        PY_VER="3.11"; \
-        CONDA_ENV="py311"; \
-        ORT_TAG="3a728b75062256951b6e19ce718907cf1a1d4cf0"; \
-        WHEEL_NAME="onnxruntime_qnn-1.24.3-cp311-cp311-linux_aarch64.whl"; \
         EXTRA_CMAKE="--cmake_extra_defines onnxruntime_USE_KLEIDIAI=OFF onnxruntime_USE_SVE=OFF"; \
     else \
-        QAIRT_VER="2.38.0.250901"; \
         HEX_FOLDER="hexagon-v73"; \
-        PY_VER="3.10.9"; \
-        CONDA_ENV="py310"; \
-        ORT_TAG="e5678a133f121ed3ea514960ac53a6dd060ac4c3"; \
-        WHEEL_NAME="onnxruntime_qnn-1.23.0-cp310-cp310-linux_aarch64.whl"; \
-        EXTRA_CMAKE=""; \
+        EXTRA_CMAKE=""
     fi && \
     \
     # 1. Setup QAIRT
@@ -62,8 +53,8 @@ RUN if [ "$DSP_ARCH" = "v75" ]; then \
     # 2. Setup Conda Environment
     . ~/miniconda3/bin/activate && \
     conda tos accept && \
-    conda create -n ${CONDA_ENV} python=${PY_VER} -y && \
-    conda activate ${CONDA_ENV} && \
+    conda create -n py311 python=3.11 -y && \
+    conda activate py311 && \
     pip install -r requirements.txt && \
     pip install flask && \
     python -m unidic download && \
@@ -71,7 +62,7 @@ RUN if [ "$DSP_ARCH" = "v75" ]; then \
     # 3. Build OnnxRuntime
     git clone --recursive https://github.com/microsoft/onnxruntime && \
     cd onnxruntime && \
-    git checkout ${ORT_TAG} && \
+    git checkout 3a728b75062256951b6e19ce718907cf1a1d4cf0 && \
     cd /app/Text-To-Speech/onnxruntime/tools/ci_build/ && \
     if [ "$DSP_ARCH" = "v75" ]; then pip install -U flatbuffers; fi && \
     python build.py --use_qnn --qnn_home=/app/Text-To-Speech/qairt/${QAIRT_VER}/ \
@@ -79,19 +70,13 @@ RUN if [ "$DSP_ARCH" = "v75" ]; then \
         --build_dir /app/Text-To-Speech/onnxruntime/build/ \
         --allow_running_as_root --parallel 8 --skip_tests \
         ${EXTRA_CMAKE} && \
-    pip install /app/Text-To-Speech/onnxruntime/build/Release/dist/${WHEEL_NAME} && \
+    pip install /app/Text-To-Speech/onnxruntime/build/Release/dist/onnxruntime_qnn-1.24.3-cp311-cp311-linux_aarch64.whl && \
     \
     # 4. Finalizing and cleanup
-    mv /root/miniconda3/envs/${CONDA_ENV}/lib/libstdc++.so.6 /root/miniconda3/envs/${CONDA_ENV}/lib/libstdc++.so.6.bak && \
+    mv /root/miniconda3/envs/py311/lib/libstdc++.so.6 /root/miniconda3/envs/py311/lib/libstdc++.so.6.bak && \
     cd /app/Text-To-Speech/ && \
     rm -rf v${QAIRT_VER}.zip qairt onnxruntime
 
 WORKDIR /app/Text-To-Speech/
-
-# Generate run.sh dynamically based on DSP_ARCH build arg
-RUN if [ "$DSP_ARCH" = "v75" ]; then \
-        printf '#!/bin/bash\n. ~/miniconda3/bin/activate py311\npython3 meloTTS_app.py\n' > run.sh; \
-    else \
-        printf '#!/bin/bash\n. ~/miniconda3/bin/activate py310\npython3 meloTTS_app.py\n' > run.sh; \
-    fi && \
-    chmod +x run.sh
+COPY run.sh /app/Text-To-Speech/run.sh
+RUN chmod +x run.sh

@@ -4,6 +4,8 @@
 // ---------------------------------------------------------------------
 #include "Genie.hpp"
 #include <filesystem>
+#include <fstream>
+#include <sstream>
 
 Genie::Genie(std::string config_path, std::string base_dir, uint32_t max_tokens)
     : config_path_(std::move(config_path)),
@@ -37,10 +39,20 @@ void Genie::_cleanupUnlocked() noexcept {
 void Genie::_initializeUnlocked() {
     std::filesystem::current_path(base_dir_);
 
+    // GenieDialogConfig_createFromJson expects JSON content, not a file path.
+    // Passing a path like "/opt/..." causes JSON parse errors (first char is '/').
+    std::ifstream in(config_path_);
+    if (!in) {
+        throw std::runtime_error("Failed to open genie_config.json: " + config_path_);
+    }
+    std::stringstream ss;
+    ss << in.rdbuf();
+    const std::string json = ss.str();
+
     if (GENIE_STATUS_SUCCESS !=
-        GenieDialogConfig_createFromJson(config_path_.c_str(), &cfg_) || !cfg_) {
+        GenieDialogConfig_createFromJson(json.c_str(), &cfg_) || !cfg_) {
         throw std::runtime_error(
-            "GenieDialogConfig_createFromJson failed for: " + config_path_);
+            "GenieDialogConfig_createFromJson failed (invalid JSON?) for: " + config_path_);
     }
 
     if (GENIE_STATUS_SUCCESS != GenieDialog_create(cfg_, &dlg_) || !dlg_) {

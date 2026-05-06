@@ -1,37 +1,49 @@
-// ---------------------------------------------------------------------
+bug sweep// ---------------------------------------------------------------------
 // Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
 // SPDX-License-Identifier: BSD-3-Clause
 // ---------------------------------------------------------------------
 #pragma once
 
-#include <string>
+#include <cstdint>
 #include <memory>
+#include <string>
+#include <unordered_map>
+
 #include "Genie.hpp"
-#include "PromptHandler.hpp"
 
 namespace App {
 
+struct ModelSpec {
+    std::string name;        // bundle folder name
+    std::string config_path; // <bundle>/genie_config.json
+    std::string base_dir;    // <bundle>
+};
+
 class ChatApp {
 public:
-    ChatApp(std::string llama_config, std::string llama_base_dir,
-            std::string qwen_config,  std::string qwen_base_dir);
-
+    explicit ChatApp(std::string bundle_dir, std::string initial_model_bundle = "");
     ~ChatApp();
 
     void Run(uint16_t port);
 
 private:
-    std::string m_llama_config, m_llama_base_dir;
-    std::string m_qwen_config,  m_qwen_base_dir;
+    std::string m_bundle_dir;
 
-    std::unique_ptr<Genie> m_llama_genie;
-    std::unique_ptr<Genie> m_qwen_genie;
+    // Registry of models discovered on disk (key: bundle name)
+    std::unordered_map<std::string, ModelSpec> m_models;
+
+    // Owning pointer to the currently active model instance
+    std::unique_ptr<Genie> m_active_genie_owner;
     Genie* m_active_genie{nullptr};
+    std::string m_active_model_bundle;
 
-    AppUtils::ModelType     m_active_model{AppUtils::ModelType::LLAMA3};
-    AppUtils::PromptHandler prompt_handler;
+    // Backend-owned system prompt (can be set via /reload_model or /process)
+    std::string m_system_prompt{"You are a helpful assistant."};
 
-    bool m_llama_initialized{true};
+    static std::unordered_map<std::string, ModelSpec> DiscoverModels(const std::string& bundle_dir);
+    static std::string ChooseAlphabeticalFirstModel(const std::unordered_map<std::string, ModelSpec>& models);
+
+    bool LoadModel(const std::string& model_bundle, std::string& out_error);
 };
 
 } // namespace App
